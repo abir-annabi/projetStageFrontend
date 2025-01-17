@@ -1,0 +1,25 @@
+<div *ngIf="users">
+    <h1>Gestion des Utilisateurs</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button (click)="editUser(user.id)">Modifier</button>
+            <button (click)="deleteUser(user.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="addUser()">Ajouter un utilisateur</button>
+
+  </div>
+  
