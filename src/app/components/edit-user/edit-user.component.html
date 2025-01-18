@@ -1,1 +1,12 @@
-<p>edit-user works!</p>
+<h1>Modifier l’utilisateur</h1>
+<form (ngSubmit)="saveUser()">
+  <div>
+    <label for="name">Nom :</label>
+    <input id="name" [(ngModel)]="user.name" name="name" required />
+  </div>
+  <div>
+    <label for="email">Email :</label>
+    <input id="email" [(ngModel)]="user.email" name="email" type="email" required />
+  </div>
+  <button type="submit">Enregistrer</button>
+</form>

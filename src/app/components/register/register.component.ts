@@ -1,6 +1,8 @@
+import { routes } from './../../app.routes';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JwtService } from './../../service/jwt.service';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -8,7 +10,7 @@ import { JwtService } from './../../service/jwt.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   standalone:true,
-  imports:[ReactiveFormsModule]
+  imports:[ReactiveFormsModule,RouterModule]
 })
 export class RegisterComponent implements OnInit {
 
@@ -16,7 +18,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private service: JwtService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +48,7 @@ export class RegisterComponent implements OnInit {
       (response) => {
         if (response.id != null) {
           alert("Hello " + response.name);
+          this.router.navigate([`/login`]);
         }
       }
     )

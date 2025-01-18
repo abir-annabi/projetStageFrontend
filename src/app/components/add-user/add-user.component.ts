@@ -45,7 +45,7 @@ export class AddUserComponent implements OnInit {
       this.jwtService.register(this.registerForm.value).subscribe(
         (response) => {
           alert('Utilisateur ajouté avec succès.');
-          this.router.navigate(['/gest-users']); // Redirigez vers la page de gestion des utilisateurs
+          this.router.navigate(['/gestUsers']); // Redirigez vers la page de gestion des utilisateurs
         },
         (error) => {
           console.error('Erreur lors de l’ajout de l’utilisateur', error);

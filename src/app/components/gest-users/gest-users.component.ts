@@ -31,9 +31,9 @@ export class GestUsersComponent implements OnInit {
   
 
   editUser(userId: number): void {
-    console.log('Modifier l’utilisateur', userId);
-    // Implémenter la logique pour modifier un utilisateur
+    this.router.navigate([`/edituser/${userId}`]);
   }
+  
 
   deleteUser(userId: number): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
