@@ -5,6 +5,7 @@
         <tr>
           <th>Nom</th>
           <th>Email</th>
+          <th>Rôle</th> 
           <th>Actions</th>
         </tr>
       </thead>
@@ -12,6 +13,9 @@
         <tr *ngFor="let user of users">
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          
+
           <td>
             <button (click)="editUser(user.id)">Modifier</button>
             <button (click)="deleteUser(user.id)">Supprimer</button>

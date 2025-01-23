@@ -1,18 +1,56 @@
 <div class="container">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" formControlName="email" />
-        </div>
+  <h2>Connexion</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    <!-- Champ email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
+      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-danger">
+        <small>{{ getErrorMessage('email') }}</small>
+      </div>
+    </div>
 
-        <div class="form-group">
-            <label for="password">mot de passe</label>
-            <input type="password" class="form-control" id="password" formControlName="password" />
-        </div>
+    <!-- Champ mot de passe -->
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+      />
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger">
+        <small>{{ getErrorMessage('password') }}</small>
+      </div>
+    </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
-        <a href="../register" class="btn btn-secondary">S'inscrire</a>
+    <!-- Champ Google reCAPTCHA -->
+    <div class="form-group" *ngIf="showReCaptcha">
+      <ngx-recaptcha2
+        #captchaElem
+        [siteKey]="siteKey"
+        formControlName="captchaToken"
+      ></ngx-recaptcha2>
+      <div *ngIf="loginForm.get('captchaToken')?.touched && loginForm.get('captchaToken')?.invalid" class="text-danger">
+        <small>Veuillez compléter le reCAPTCHA.</small>
+      </div>
+    </div>
 
-    </form>
+    <!-- Bouton Login -->
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="loginForm.invalid || isSubmitting"
+    >
+      {{ isSubmitting ? 'Connexion...' : 'Login' }}
+    </button>
+
+    <!-- Bouton vers l'inscription -->
+    <a href="/register" class="btn btn-secondary">S'inscrire</a>
+  </form>
 </div>

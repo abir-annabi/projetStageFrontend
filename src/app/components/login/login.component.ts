@@ -1,44 +1,95 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtService } from './../../service/jwt.service';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  standalone:true,
-  imports:[ReactiveFormsModule]
+  standalone: true,
+  imports: [ReactiveFormsModule, NgxCaptchaModule, CommonModule]
 })
-export class LoginComponent implements OnInit {
-
-  loginForm!: FormGroup ;
+export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
+  loginForm!: FormGroup;
+  siteKey: string = '6LfeP74qAAAAABpsd9_lTeV_xmy9GtNoWPbLovYZ';
+  isSubmitting: boolean = false;
 
   constructor(
     private service: JwtService,
     private fb: FormBuilder,
-    private router: Router
-  ) { }
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-  ngOnInit(): void {
+  showReCaptcha: boolean = false;
+
+ngOnInit(): void {
+  if (this.isBrowser()) {
+    this.showReCaptcha = true; // ReCaptcha activé uniquement côté client
+  }
     this.loginForm = this.fb.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-    })
+      captchaToken: ['', Validators.required]
+    });
+  }
+
+  ngAfterViewInit(): void {
+    // Protection pour exécuter du code lié au navigateur uniquement
+    if (this.isBrowser()) {
+      console.log('ReCaptcha initialisé uniquement côté client.');
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Ajout d'une protection pour éviter d'exécuter du code côté serveur
+    if (this.isBrowser()) {
+      console.log('Nettoyage de ReCaptcha si nécessaire.');
+    }
+  }
+
+  isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
+
+  getErrorMessage(controlName: string): string | null {
+    const control = this.loginForm.get(controlName);
+    if (control?.hasError('required')) {
+      return `${controlName} est requis.`;
+    }
+    if (controlName === 'email' && control?.hasError('email')) {
+      return `Adresse email invalide.`;
+    }
+    return null;
   }
 
   submitForm() {
-    this.service.login(this.loginForm!.value).subscribe(
-      (response) => {
-        console.log(response);
-        if (response.jwt != null) {
-          alert("Hello, Your token is " + response.jwt);
-          const jwtToken = response.jwt;
-          localStorage.setItem('jwt', jwtToken);
-          this.router.navigateByUrl("/home");
+    if (this.loginForm.valid) {
+      this.isSubmitting = true;
+      console.log(this.loginForm.value);
+      this.service.login(this.loginForm.value).subscribe(
+        (response) => {
+          this.isSubmitting = false;
+          if (response.jwt) {
+            alert("Hello, Your token is " + response.jwt);
+            const jwtToken = response.jwt;
+            if (typeof localStorage !== 'undefined') {
+              localStorage.setItem('jwt', jwtToken);
+            }
+            this.router.navigateByUrl('/home');
+          }
+        },
+        (error) => {
+          this.isSubmitting = false;
+          console.error('Erreur lors de la connexion : ', error);
+          alert('Une erreur est survenue lors de la connexion.');
         }
-      }
-    )
+      );
+    }
   }
-
 }

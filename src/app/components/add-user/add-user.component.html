@@ -1,34 +1,52 @@
 <div class="container">
-    <h2>Register</h2>
-    <form [formGroup]="registerForm" (ngSubmit)=submitForm()>
+    <h2>Ajouter un utilisateur</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Nom</label>
             <input type="text" class="form-control" id="name" formControlName="name" />
+            <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="text-danger">
+                <div *ngIf="registerForm.get('name')?.hasError('required')">Le nom est requis.</div>
+                <div *ngIf="registerForm.get('name')?.hasError('pattern')">Le nom ne peut pas contenir de chiffres.</div>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" formControlName="email" />
+            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
+                <div *ngIf="registerForm.get('email')?.hasError('required')">L'email est requis.</div>
+                <div *ngIf="registerForm.get('email')?.hasError('email')">L'email doit être valide.</div>
+            </div>
         </div>
 
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Mot de passe</label>
             <input type="password" class="form-control" id="password" formControlName="password" />
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
+                <div *ngIf="registerForm.get('password')?.hasError('required')">Le mot de passe est requis.</div>
+                <div *ngIf="registerForm.get('password')?.hasError('minlength')">Le mot de passe doit comporter au moins 6 caractères.</div>
+                <div *ngIf="registerForm.get('password')?.hasError('uppercase')">Le mot de passe doit contenir au moins une majuscule.</div>
+                <div *ngIf="registerForm.get('password')?.hasError('digit')">Le mot de passe doit contenir au moins un chiffre.</div>
+                <div *ngIf="registerForm.get('password')?.hasError('specialChar')">Le mot de passe doit contenir au moins un caractère spécial.</div>
+            </div>
         </div>
 
         <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
+            <label for="confirmPassword">Confirmer le mot de passe</label>
             <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" />
+            <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="text-danger">
+                <div *ngIf="registerForm.get('confirmPassword')?.hasError('required')">La confirmation du mot de passe est requise.</div>
+                <div *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch')">Les mots de passe ne correspondent pas.</div>
+            </div>
         </div>
-        
+
         <div class="form-group">
-            <label for="role">Role</label>
+            <label for="role">Rôle</label>
             <select class="form-control" id="role" formControlName="role">
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
+                <option value="user">Utilisateur</option>
+                <option value="admin">Administrateur</option>
             </select>
         </div>
-          
 
         <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Ajouter</button>
     </form>

@@ -27,23 +27,37 @@ export class EditUserComponent implements OnInit {
   }
 
   fetchUserDetails(): void {
-    // Call service to fetch user details
     this.jwtService.getUserById(this.userId).subscribe(
       (data) => {
         this.user = data;
         console.log('User details retrieved:', this.user);
+  
+        // Assurez-vous que le rôle existe dans l'objet utilisateur
+        if (!this.user.profile) {
+          this.user.profile = { role: '' }; // Initialise le rôle si manquant
+        }
       },
-      (error) =>
-        console.error('Error while fetching user details', error)
+      (error) => console.error('Error while fetching user details', error)
     );
   }
-
+  
   saveUser(): void {
-    // Call service to save user modifications
+    // Inclure le mot de passe actuel si aucun changement
+    if (!this.user.password) {
+      this.user.password = 'current-password-placeholder'; // Placeholder pour le mot de passe
+    }
+  
+    // Mapper le rôle en format backend avant l'envoi
+    /*f (this.user.profile.role === 'admin') {
+      this.user.profile.role = 'admin';
+    } else if (this.user.profile.role === 'user') {
+      this.user.profile.role = 'user';
+    }*/
+  
     this.jwtService.updateUser(this.userId, this.user).subscribe(
       () => {
         alert('Utilisateur modifié avec succès');
-        this.router.navigate(['/gestUsers']); // Redirect to gestUsers page
+        this.router.navigate(['/gestUsers']); // Redirection après succès
       },
       (error) => {
         alert('Erreur de modification de l’utilisateur');
@@ -51,4 +65,7 @@ export class EditUserComponent implements OnInit {
       }
     );
   }
+  
+  
+  
 }

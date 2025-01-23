@@ -8,5 +8,12 @@
     <label for="email">Email :</label>
     <input id="email" [(ngModel)]="user.email" name="email" type="email" required />
   </div>
+  <div>
+    <label for="role">Rôle :</label>
+    <select id="role" [(ngModel)]="user.profile.role" name="role" required>
+      <option value="admin">Administrateur</option>
+      <option value="user">Utilisateur</option>
+    </select>
+  </div>
   <button type="submit">Enregistrer</button>
 </form>

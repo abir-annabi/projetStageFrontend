@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-user',
-  standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css'],
+  imports:[ReactiveFormsModule,CommonModule],
+  standalone: true,
+
 })
 export class AddUserComponent implements OnInit {
   registerForm!: FormGroup;
@@ -22,10 +23,16 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]], // Le nom doit être composé uniquement de lettres
+      email: ['', [Validators.required, Validators.email]], // L'email doit être valide
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6), // Longueur minimale de 6 caractères
+        this.uppercaseValidator, // Validation de la majuscule
+        this.digitValidator, // Validation du chiffre
+        this.specialCharValidator // Validation du caractère spécial
+      ]],
+      confirmPassword: ['', [Validators.required]], // La confirmation du mot de passe est requise
       role: ['user', [Validators.required]], // Le rôle par défaut est "user"
     }, { validator: this.passwordMatchValidator });
   }
@@ -38,6 +45,24 @@ export class AddUserComponent implements OnInit {
     } else {
       formGroup.get('confirmPassword')?.setErrors(null);
     }
+  }
+
+  // Validation de la majuscule
+  uppercaseValidator(control: any) {
+    const hasUpperCase = /[A-Z]/.test(control.value);
+    return hasUpperCase ? null : { uppercase: true };
+  }
+
+  // Validation du chiffre
+  digitValidator(control: any) {
+    const hasDigit = /\d/.test(control.value);
+    return hasDigit ? null : { digit: true };
+  }
+
+  // Validation du caractère spécial
+  specialCharValidator(control: any) {
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(control.value);
+    return hasSpecialChar ? null : { specialChar: true };
   }
 
   submitForm(): void {

@@ -30,21 +30,29 @@ export class StorageService {
   }
 
   // Lire une valeur depuis localStorage
-  getItem(key: string): string | null {
-    if (this.isLocalStorageAvailable()) {
-      return localStorage.getItem(key);
-    } else {
-      console.error('Impossible de lire dans localStorage. Environnement non supporté.');
-      return null;
-    }
+  
+  isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
-
-  // Supprimer une valeur de localStorage
+  
+  getItem(key: string): string | null {
+    if (this.isBrowser()) {
+      return localStorage.getItem(key);
+    }
+    console.warn('localStorage non supporté dans cet environnement.');
+    return null;
+  }
+  
   removeItem(key: string): void {
-    if (this.isLocalStorageAvailable()) {
+    if (this.isBrowser()) {
       localStorage.removeItem(key);
     } else {
-      console.error('Impossible de supprimer dans localStorage. Environnement non supporté.');
+      console.warn('localStorage non supporté dans cet environnement.');
     }
   }
+  
+
+  
+
+  
 }

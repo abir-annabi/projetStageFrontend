@@ -1,1 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+.g-recaptcha {
+    margin: 10px 0;
+  }
+  

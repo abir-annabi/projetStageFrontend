@@ -4,12 +4,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { StorageService } from './storage-service.service';
 
-const BASE_URL = "http://localhost:8083/";
+  const BASE_URL = "http://localhost:8086/";
 
 @Injectable({
   providedIn: 'root'
 })
 export class JwtService {
+  
   constructor(private http: HttpClient, private storageService: StorageService) {}
 
   register(signRequest: any): Observable<any> {
@@ -19,6 +20,7 @@ export class JwtService {
   login(loginRequest: any): Observable<any> {
     return this.http.post(BASE_URL + 'login', loginRequest);
   }
+  
 
   gestionUsers(): Observable<any> {
     const headers = this.createAuthorizationHeader();
@@ -53,6 +55,36 @@ export class JwtService {
     }
     return null;
   }
+  getEmail(): string | null {
+    const token = this.storageService.getItem('jwt');
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        console.log('Email du token :', decodedToken.email);
+        return decodedToken.email || null;
+      } catch (error) {
+        console.error('Erreur lors du décodage du token JWT', error);
+        return null;
+      }
+    }
+    return null;
+  }
+  
+  getPhoneNumber(): string | null {
+    const token = this.storageService.getItem('jwt');
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        console.log('Numéro de téléphone du token :', decodedToken.phoneNumber);
+        return decodedToken.phoneNumber || null;
+      } catch (error) {
+        console.error('Erreur lors du décodage du token JWT', error);
+        return null;
+      }
+    }
+    return null;
+  }
+
 
   isAdmin(): boolean {
     const role = this.getRole();
@@ -81,6 +113,22 @@ export class JwtService {
     if (!headers) {
       return throwError(() => new Error('Aucun JWT trouvé.'));
     }
-    return this.http.put(BASE_URL + `api/users/${userId}`, userData, { headers });
+  
+    // Construire le payload pour correspondre au backend
+    const payload = {
+      name: userData.name,
+      email: userData.email,
+      password: userData.password, // Inclure le mot de passe (nécessaire pour le backend)
+      profile: {
+        role: userData.profile.role, // Inclure le rôle
+      },
+    };
+  
+    console.log('Payload envoyé au backend:', payload);
+    console.log('Headers:', headers);
+  
+    return this.http.put(BASE_URL + `api/users/${userId}`, payload, { headers });
   }
+  
+
 }
