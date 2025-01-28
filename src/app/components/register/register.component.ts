@@ -4,13 +4,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { JwtService } from '../../service/jwt.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, CommonModule]
+  imports: [ReactiveFormsModule, RouterModule, CommonModule,TranslateModule]
 })
 export class RegisterComponent implements OnInit {
 
@@ -82,7 +83,7 @@ export class RegisterComponent implements OnInit {
     this.service.register(formData).subscribe(
       (response) => {
         if (response.id != null) {
-          alert("Hello " + response.name);
+          alert("Inscription réussite!!");
           this.router.navigate([`/login`]);
         }
       },

@@ -1,12 +1,16 @@
-<nav>
-    <div class="container">
-      <a class="navbar-brand" href="#">Angular App</a>
-    
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"></li>
-            <li *ngIf="isAdmin"><a routerLink="/gestUsers">Gestion des Utilisateurs</a></li>
-            <li><a href="javascript:void(0);" (click)="logout()">Déconnexion</a></li>
-      </ul>
-    </div>
-    </nav>
-    
+<nav class="custom-navbar" *ngIf="showNavbar">
+  <div class="logo">
+    <span>{{ "app" | translate }}</span>
+  </div>
+  <ul class="nav-links">
+    <li class="nav-item">
+      <a routerLink="/home" class="nav-link">{{ 'Home' | translate }}</a>
+    </li>
+    <li class="nav-item" *ngIf="isAdmin">
+      <a routerLink="/gestUsers" class="nav-link">{{ 'Gestion des Utilisateurs' | translate }}</a>
+    </li>
+    <li class="nav-item">
+      <a href="javascript:void(0);" (click)="logout()" class="nav-link">{{ 'Déconnexion' | translate }}</a>
+    </li>
+  </ul>
+</nav>

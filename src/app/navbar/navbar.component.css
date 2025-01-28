@@ -1,52 +1,77 @@
-nav {
-    background-color: #343a40; /* Fond sombre */
-    padding: 0.5rem 1rem; /* Réduction des marges internes */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #007bff; /* Ligne subtile */
+/* General Navbar Styling */
+.custom-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 2px solid #000000; /* Black underline */
+  font-family: 'Arial', sans-serif; /* Clean font style */
+  z-index: 1000; /* Ensure it stays above other content */
+  position: relative; /* Allows positioning adjustments */
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Cursive', sans-serif; /* Stylish font for the logo */
+  color: #000000; /* Black logo text */
+}
+
+/* Nav Links Styling */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px; /* Space between each link */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+/* Link Styling */
+.nav-link {
+  text-decoration: none;
+  color: #000000; /* Black text for links */
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover and Active Effects */
+.nav-link:hover {
+  color: #007bff; /* Blue on hover */
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #007bff; /* Blue underline effect */
+  transition: width 0.3s ease;
+  margin-top: 5px;
+}
+
+.nav-link:hover::after {
+  width: 100%; /* Full underline on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .custom-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
   }
-  
-  .navbar-brand {
-    color: #ffffff;
-    font-size: 1.5rem; /* Texte légèrement réduit */
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .navbar-nav {
-    display: flex;
-    list-style: none;
-    gap: 1rem; /* Espacement réduit entre les liens */
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-item {
-    display: inline-block;
-  }
-  
-  .nav-link {
-    color: #ffffff;
-    font-size: 0.9rem; /* Texte plus petit */
-    font-weight: 500;
-    text-decoration: none;
-    padding: 0.3rem 0.8rem; /* Espacement interne réduit */
-    border-radius: 3px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-  
-  .nav-link:hover {
-    background-color: #00adb5;
-    color: #ffffff;
-  }
-  
-  .container {
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
     width: 100%;
-    max-width: 960px; /* Limitation de la largeur pour rendre compact */
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
-  
+}

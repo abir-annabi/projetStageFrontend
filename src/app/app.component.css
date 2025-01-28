@@ -1,0 +1,29 @@
+.language-selector {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .language-selector select {
+    font-size: 16px;
+    padding: 5px;
+  }
+  /* Par défaut : orientation de gauche à droite */
+body.ltr {
+    direction: ltr;
+    text-align: left;
+  }
+  
+  /* Lorsque la langue arabe est sélectionnée : orientation de droite à gauche */
+  body.rtl {
+    direction: rtl;
+    text-align: right;
+  }
+  /* Exemple pour les icônes */
+body.rtl .icon {
+    transform: rotate(180deg); /* Inverser les icônes si nécessaire */
+  }
+  

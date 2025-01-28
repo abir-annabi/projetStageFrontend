@@ -1,19 +1,25 @@
-<h1>Modifier l’utilisateur</h1>
-<form (ngSubmit)="saveUser()">
-  <div>
-    <label for="name">Nom :</label>
-    <input id="name" [(ngModel)]="user.name" name="name" required />
-  </div>
-  <div>
-    <label for="email">Email :</label>
-    <input id="email" [(ngModel)]="user.email" name="email" type="email" required />
-  </div>
-  <div>
-    <label for="role">Rôle :</label>
-    <select id="role" [(ngModel)]="user.profile.role" name="role" required>
-      <option value="admin">Administrateur</option>
-      <option value="user">Utilisateur</option>
-    </select>
-  </div>
-  <button type="submit">Enregistrer</button>
-</form>
+<div class="background-container">
+  <form (ngSubmit)="saveUser()">
+    <h1>{{ 'EditUser' | translate }}</h1>
+    
+    <div>
+      <label for="name">{{ 'Name' | translate }} :</label>
+      <input id="name" [(ngModel)]="user.name" name="name" required />
+    </div>
+    
+    <div>
+      <label for="email">{{ 'Email' | translate }} :</label>
+      <input id="email" [(ngModel)]="user.email" name="email" type="email" required />
+    </div>
+    
+    <div>
+      <label for="role">{{ 'Role' | translate }} :</label>
+      <select id="role" [(ngModel)]="user.profile.role" name="role" required>
+        <option value="admin">{{ 'Admin' | translate }}</option>
+        <option value="user">{{ 'User' | translate }}</option>
+      </select>
+    </div>
+    
+    <button type="submit">{{ 'Save' | translate }}</button>
+  </form>
+</div>

@@ -1,0 +1,58 @@
+{
+   "Welcome": "Welcome",
+  "Get Started": "Get Started",
+  "app": "Municipal Decisions Publication Request",
+  "Home": "Home",
+  "Gestion des Utilisateurs": "User Management",
+  "Déconnexion": "Logout",
+  "TITLE": "Welcome to My App",
+  "Register": "Register",
+  "Name": "Name",
+  "NameRequired": "Name is required. Please enter your name.",
+  "NamePattern": "Name can only contain letters.",
+  "Email": "Email",
+  "EmailRequired": "Email is required. Please enter a valid email.",
+  "EmailInvalid": "The email you entered is invalid.",
+  "EmailGeneric": "The email is too generic or invalid.",
+  "PhoneNumber": "Phone Number",
+  "PhoneNumberRequired": "Phone number is required.",
+  "PhoneNumberPattern": "Phone number should only contain digits.",
+  "PhoneNumberMaxLength": "Phone number should not exceed 8 digits.",
+  "PasswordComplexity": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character (e.g., !#$%^&*).",
+  "ConfirmPassword": "Confirm Password",
+  "ConfirmPasswordRequired": "Confirm password is required.",
+  "PasswordMismatch": "Passwords do not match. Please enter them again.",
+  "Login": "Login",
+  "Password": "Password",
+  "PasswordRequired": "Password is required. Please enter a password.",
+  "PasswordMinLength": "Password must be at least 8 characters long.",
+  "ReCaptchaRequired": "Please complete the reCAPTCHA.",
+  "LoginButton": "Login",
+  "LoggingIn": "Logging in...",
+  "RegisterPrompt": "Don't have an account?",
+  "RegisterButton": "Sign up",
+  "UserManagement": "User Management",
+  "Role": "Role",
+  "Actions": "Actions",
+  "Edit": "Edit",
+  "Delete": "Delete",
+ 
+    "EditUser": "Edit User",
+  
+ 
+    "Save": "Save",
+    "AddUser": "Add User",
+ 
+  "User": "User",
+  "Admin": "Administrator",
+  "Add": "Add",
+
+  "EmailValid": "Email must be valid.",
+  
+  "PasswordUppercase": "Password must contain at least one uppercase letter.",
+  "PasswordDigit": "Password must contain at least one digit.",
+  "PasswordSpecialChar": "Password must contain at least one special character."
+
+  
+  
+}

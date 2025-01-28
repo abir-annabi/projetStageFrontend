@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { JwtService } from './../../service/jwt.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Inject, PLATFORM_ID } from '@angular/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, NgxCaptchaModule, CommonModule]
+  imports: [ReactiveFormsModule, NgxCaptchaModule, CommonModule,TranslateModule]
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   loginForm!: FormGroup;
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   showReCaptcha: boolean = false;
+  showPassword = false; 
 
 ngOnInit(): void {
   if (this.isBrowser()) {
@@ -67,6 +69,9 @@ ngOnInit(): void {
     }
     return null;
   }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   submitForm() {
     if (this.loginForm.valid) {
@@ -76,8 +81,8 @@ ngOnInit(): void {
         (response) => {
           this.isSubmitting = false;
           if (response.jwt) {
-            alert("Hello, Your token is " + response.jwt);
             const jwtToken = response.jwt;
+            console.log(jwtToken);
             if (typeof localStorage !== 'undefined') {
               localStorage.setItem('jwt', jwtToken);
             }

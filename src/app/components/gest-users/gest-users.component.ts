@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { JwtService } from '../../service/jwt.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-gest-users',
   templateUrl: './gest-users.component.html',
   styleUrls: ['./gest-users.component.css'],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,TranslateModule],
   standalone: true,
 })
 export class GestUsersComponent implements OnInit {

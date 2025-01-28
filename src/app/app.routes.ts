@@ -7,6 +7,8 @@ import { GestUsersComponent } from './components/gest-users/gest-users.component
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { AdminGuard } from './guards/admin.guard';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { VerificationComponent } from './verifivation/verifivation.component';
+
 
 
 export const routes: Routes = [
@@ -17,7 +19,8 @@ export const routes: Routes = [
 { path: 'gestUsers', component: GestUsersComponent , canActivate: [AdminGuard]},     
 { path: 'adduser', component: AddUserComponent , canActivate: [AdminGuard]}, 
 { path: 'edituser/:id', component: EditUserComponent, canActivate: [AdminGuard] },
-{ path: '**', component: LoginComponent } 
+{ path: '**', component: LoginComponent },
+{ path: 'verification', component: VerificationComponent },
 
 
 ];

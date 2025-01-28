@@ -1,97 +1,151 @@
-/* Conteneur principal */
+/* Main container */
 div {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
-  /* Titre principal */
-  h1 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Table */
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 20px;
+}
+
+/* Title */
+h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: white;
+}
+
+th,
+td {
+  padding: 14px 18px;
+  text-align: left;
+  border: none;
+}
+
+th {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+tbody tr {
+  background-color: white;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f7f9fc;
+}
+
+tbody tr:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #e8f6ff;
+}
+
+/* Buttons in the last column */
+td:last-child {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+button:first-child {
+  background-color: #28a745;
+  color: white;
+  font-weight: 600;
+}
+
+button:first-child:hover {
+  background-color: #218838;
+}
+
+button:last-child {
+  background-color: #dc3545;
+  color: white;
+  font-weight: 600;
+}
+
+button:last-child:hover {
+  background-color: #c82333;
+}
+
+/* Add User Button */
+button.add-user {
+  display: block;
+  margin-left: auto;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: white;
+  margin-top: 0px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button.add-user:hover {
+  background: linear-gradient(90deg, #ff6a4d, #fe9a6b);
+  transform: translateY(-2px);
+}
+
+/* Responsive Table */
+@media screen and (max-width: 768px) {
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  thead {
-    background-color: #f4f4f4;
-  }
-  
-  th,
-  td {
-    padding: 12px 15px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  th {
-    font-weight: bold;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Alignement des boutons */
-  td:last-child {
-    text-align: right;
-    display: flex; /* Utiliser flexbox */
-    justify-content: flex-end; /* Aligner les boutons à droite */
-    gap: 10px; /* Espacement entre les boutons */
-  }
-  
-  /* Boutons */
-  button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
     font-size: 14px;
   }
-  
-  button:hover {
-    opacity: 0.9;
+  th, td {
+    padding: 10px 12px;
   }
-  
-  button:first-child {
-    background-color: #4CAF50;
-    color: white;
+  button {
+    font-size: 12px;
+    padding: 8px 10px;
   }
-  
-  button:first-child:hover {
-    background-color: #45a049;
-  }
-  
-  button:last-child {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  button:last-child:hover {
-    background-color: #e53935;
-  }
-  
-  /* Bouton "Ajouter un utilisateur" */
   button.add-user {
-    display: block;
-    margin-left: auto;
-    background-color: #007BFF;
-    color: white;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 10px 18px;
   }
-  
-  button.add-user:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
+html, body {
+  height: 100%;
+ 
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  height: 100vh;
+  background: url('../../../assets/images/8.png') no-repeat center center fixed;
+  background-size: cover;
+}

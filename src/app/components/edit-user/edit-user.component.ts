@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtService } from '../../service/jwt.service';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css'],
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,TranslateModule],
 })
 export class EditUserComponent implements OnInit {
   userId!: number; // ID of the user to edit

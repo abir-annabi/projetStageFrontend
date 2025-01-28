@@ -1,59 +1,59 @@
 <div class="container">
-  <h2>Register</h2>
+  <h2>{{ 'Register' | translate }}</h2>
   <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
     <!-- Nom -->
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">{{ 'Name' | translate }}</label>
       <input type="text" class="form-control" id="name" formControlName="name" />
       <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger">
-        <div *ngIf="registerForm.get('name')?.hasError('required')">Le nom est requis. Veuillez entrer votre nom.</div>
-        <div *ngIf="registerForm.get('name')?.hasError('pattern')">Le nom ne peut contenir que des lettres.</div>
+        <div *ngIf="registerForm.get('name')?.hasError('required')">{{ 'NameRequired' | translate }}</div>
+        <div *ngIf="registerForm.get('name')?.hasError('pattern')">{{ 'NamePattern' | translate }}</div>
       </div>
     </div>
 
     <!-- Email -->
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">{{ 'Email' | translate }}</label>
       <input type="email" class="form-control" id="email" formControlName="email" />
       <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger">
-        <div *ngIf="registerForm.get('email')?.hasError('required')">L'email est requis. Veuillez entrer un email valide.</div>
-        <div *ngIf="registerForm.get('email')?.hasError('email')">L'email que vous avez entré est invalide.</div>
-        <div *ngIf="registerForm.get('email')?.hasError('emailInvalid')">L'email est trop générique ou invalide. </div>
+        <div *ngIf="registerForm.get('email')?.hasError('required')">{{ 'EmailRequired' | translate }}</div>
+        <div *ngIf="registerForm.get('email')?.hasError('email')">{{ 'EmailInvalid' | translate }}</div>
+        <div *ngIf="registerForm.get('email')?.hasError('emailInvalid')">{{ 'EmailGeneric' | translate }}</div>
       </div>
     </div>
 
     <!-- Numéro de téléphone -->
     <div class="form-group">
-      <label for="phoneNumber">Phone Number</label>
+      <label for="phoneNumber">{{ 'PhoneNumber' | translate }}</label>
       <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" />
       <div *ngIf="registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid" class="text-danger">
-        <div *ngIf="registerForm.get('phoneNumber')?.hasError('required')">Le numéro de téléphone est requis.</div>
-        <div *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">Le numéro doit contenir uniquement des chiffres.</div>
-        <div *ngIf="registerForm.get('phoneNumber')?.hasError('maxlength')">Le numéro de téléphone ne doit pas dépasser 8 chiffres.</div>
+        <div *ngIf="registerForm.get('phoneNumber')?.hasError('required')">{{ 'PhoneNumberRequired' | translate }}</div>
+        <div *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">{{ 'PhoneNumberPattern' | translate }}</div>
+        <div *ngIf="registerForm.get('phoneNumber')?.hasError('maxlength')">{{ 'PhoneNumberMaxLength' | translate }}</div>
       </div>
     </div>
 
     <!-- Mot de passe -->
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">{{ 'Password' | translate }}</label>
       <input type="password" class="form-control" id="password" formControlName="password" />
       <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger">
-        <div *ngIf="registerForm.get('password')?.hasError('required')">Le mot de passe est requis. Veuillez entrer un mot de passe.</div>
-        <div *ngIf="registerForm.get('password')?.hasError('minlength')">Le mot de passe doit contenir au moins 8 caractères.</div>
-        <div *ngIf="registerForm.get('password')?.hasError('passwordComplexity')">Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial (ex : !#$%^&*).</div>
+        <div *ngIf="registerForm.get('password')?.hasError('required')">{{ 'PasswordRequired' | translate }}</div>
+        <div *ngIf="registerForm.get('password')?.hasError('minlength')">{{ 'PasswordMinLength' | translate }}</div>
+        <div *ngIf="registerForm.get('password')?.hasError('passwordComplexity')">{{ 'PasswordComplexity' | translate }}</div>
       </div>
     </div>
 
     <!-- Confirmation du mot de passe -->
     <div class="form-group">
-      <label for="confirmPassword">Confirm Password</label>
+      <label for="confirmPassword">{{ 'ConfirmPassword' | translate }}</label>
       <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" />
       <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid" class="text-danger">
-        <div *ngIf="registerForm.get('confirmPassword')?.hasError('required')">La confirmation du mot de passe est requise.</div>
-        <div *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch')">Les mots de passe ne correspondent pas. Veuillez les entrer à nouveau.</div>
+        <div *ngIf="registerForm.get('confirmPassword')?.hasError('required')">{{ 'ConfirmPasswordRequired' | translate }}</div>
+        <div *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch')">{{ 'PasswordMismatch' | translate }}</div>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">{{ 'Register' | translate }}</button>
   </form>
 </div>

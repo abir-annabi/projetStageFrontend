@@ -1,9 +1,9 @@
 <div class="container">
-  <h2>Connexion</h2>
+  <h2>{{ 'Connexion' | translate }}</h2>
   <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
     <!-- Champ email -->
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">{{ 'Email' | translate }}</label>
       <input
         type="email"
         class="form-control"
@@ -11,13 +11,13 @@
         formControlName="email"
       />
       <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-danger">
-        <small>{{ getErrorMessage('email') }}</small>
+        <small>{{ 'EmailRequired' | translate }}</small>
       </div>
     </div>
 
     <!-- Champ mot de passe -->
     <div class="form-group">
-      <label for="password">Mot de passe</label>
+      <label for="password">{{ 'Password' | translate }}</label>
       <input
         type="password"
         class="form-control"
@@ -25,7 +25,7 @@
         formControlName="password"
       />
       <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger">
-        <small>{{ getErrorMessage('password') }}</small>
+        <small>{{ 'PasswordRequired' | translate }}</small>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
         formControlName="captchaToken"
       ></ngx-recaptcha2>
       <div *ngIf="loginForm.get('captchaToken')?.touched && loginForm.get('captchaToken')?.invalid" class="text-danger">
-        <small>Veuillez compléter le reCAPTCHA.</small>
+        <small>{{ 'ReCaptchaRequired' | translate }}</small>
       </div>
     </div>
 
@@ -47,10 +47,11 @@
       class="btn btn-primary"
       [disabled]="loginForm.invalid || isSubmitting"
     >
-      {{ isSubmitting ? 'Connexion...' : 'Login' }}
+      {{ isSubmitting ? ('LoggingIn' | translate) : ('LoginButton' | translate) }}
     </button>
 
     <!-- Bouton vers l'inscription -->
-    <a href="/register" class="btn btn-secondary">S'inscrire</a>
+    <p>{{ 'RegisterPrompt' | translate }}</p>
+    <a href="/register" class="btn btn-secondary">{{ 'RegisterButton' | translate }}</a>
   </form>
 </div>

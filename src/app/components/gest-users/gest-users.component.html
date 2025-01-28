@@ -1,29 +1,25 @@
 <div *ngIf="users">
-    <h1>Gestion des Utilisateurs</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Email</th>
-          <th>Rôle</th> 
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.role }}</td>
-          
-
-          <td>
-            <button (click)="editUser(user.id)">Modifier</button>
-            <button (click)="deleteUser(user.id)">Supprimer</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="btn btn-primary" (click)="addUser()">Ajouter un utilisateur</button>
-
-  </div>
-  
+  <h1>{{ 'UserManagement' | translate }}</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>{{ 'Name' | translate }}</th>
+        <th>{{ 'Email' | translate }}</th>
+        <th>{{ 'Role' | translate }}</th> 
+        <th>{{ 'Actions' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <button (click)="editUser(user.id)">{{ 'Edit' | translate }}</button>
+          <button (click)="deleteUser(user.id)">{{ 'Delete' | translate }}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="addUser()">{{ 'AddUser' | translate }}</button>
+</div>
