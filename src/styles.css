@@ -1,6 +1,4 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import "primeicons/primeicons.css";
 
-.g-recaptcha {
-    margin: 10px 0;
-  }
 

@@ -1,0 +1,199 @@
+/* Général */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center;     /* Centre verticalement */
+  height: 100vh;           /* Prend toute la hauteur de la page */
+}
+
+
+.p-4 {
+  padding: 0.4rem;
+    margin-left: 250px;
+  width: 900px;
+
+}
+
+.text-xl {
+  font-size: 2rem;
+  text-align: center;
+  margin-left: 180px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+#bord{
+  background-color: #787678;
+}
+
+.mb-4 {
+  margin-bottom: 0.5rem;
+  margin-left: 300px;
+  background-color: #dfe6e8;
+}
+
+/* Section principale */
+h2 {
+  color: #3a3a3b;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+input[type="text"], input[type="number"] {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+  width: 130px;
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  transition: border 0.3s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+  border-color: #4A90E2;
+  outline: none;
+}
+
+/* Tableaux */
+div.p-4 > div {
+  background-color: #fff;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  width: 350px; /* Taille compacte du tableau */
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.ml-4 {
+  margin-left: 0.6rem;
+}
+
+.mt-2 {
+  margin-top: 0.3rem;
+}
+
+.mr-2 {
+  margin-right: 0.3rem;
+}
+
+/* Boutons */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+  transition: background-color 0.3s;
+  font-size: 0.7rem;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* Couleurs des boutons */
+.bg-blue-500 {
+  background-color: #4A90E2;
+  color: white;
+}
+
+.bg-green-500 {
+  background-color: #56CC7E;
+  color: white;
+}
+
+.bg-red-500 {
+  background-color: #E74C3C;
+  color: white;
+}
+
+.bg-green-400 {
+  background-color: #56CC7E;
+  color: white;
+}
+
+
+.bg-red-400 {
+  background-color: #E74C3C;
+  color: white;
+}
+
+/* Sections Natures */
+h4 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  color: #555;
+}
+
+.mt-1 {
+  margin-top: 0.2rem;
+}
+
+input[type="text"] {
+  margin-bottom: 0.3rem;
+  width: calc(100% - 60px);
+}
+
+/* Séparation des lignes */
+.border {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+input[type="text"]:not(.p-1) {
+  margin-right: 6px;
+}
+
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .mt-2 {
+    margin-top: 0.6rem;
+  }
+
+h2{
+ text-align: center;
+ margin-left: 00px;
+ margin-right: 00px;
+ padding-bottom: 20px;
+ color: purple;
+
+}
+
+bg-blue-400{
+  background-color: #a09b9b;
+}
+.text-xl {
+  font-size: 2rem;
+ padding-left: 200px;
+  margin-right: 500px;
+  padding-right: 500px;
+}
+
+}

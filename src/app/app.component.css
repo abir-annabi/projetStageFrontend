@@ -1,15 +1,16 @@
 .language-selector {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    top: 0px;
+    right: 0px;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  
   }
   
   .language-selector select {
-    font-size: 16px;
-    padding: 5px;
+    font-size: 12px;
+    padding: 4px;
   }
   /* Par défaut : orientation de gauche à droite */
 body.ltr {
@@ -25,5 +26,34 @@ body.ltr {
   /* Exemple pour les icônes */
 body.rtl .icon {
     transform: rotate(180deg); /* Inverser les icônes si nécessaire */
+  }
+  
+  body{
+    background-color: #ffffff;
+  }
+  
+  app-navbar {
+    width: 85px; /* Largeur initiale */
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: width 0.4s ease;
+    
+  }
+  
+  app-navbar:hover {
+    width: 260px;
+  }
+  
+  .main-content {
+    flex-grow: 1; /* Occupe tout l’espace restant */
+    margin-left: 85px; /* Même largeur que la sidebar */
+    padding: 20px;
+    transition: margin-left 0.4s ease;
+  }
+  
+  app-navbar:hover + .main-content {
+    margin-left: 260px; /* Ajuste la marge quand la sidebar est étendue */
   }
   

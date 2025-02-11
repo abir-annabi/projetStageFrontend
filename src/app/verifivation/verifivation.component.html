@@ -1,7 +1,0 @@
-<h2>Vérifiez votre email</h2>
-<form [formGroup]="verificationForm" (ngSubmit)="submitCode()">
-  <label>Entrez le code envoyé à votre email :</label>
-  <input formControlName="code" type="text" maxlength="4" />
-  <button type="submit">Vérifier</button>
-</form>
-<p *ngIf="errorMessage">{{ errorMessage }}</p>

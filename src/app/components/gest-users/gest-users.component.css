@@ -1,151 +1,167 @@
-/* Main container */
-div {
-  font-family: 'Poppins', Arial, sans-serif;
-  margin: 20px;
+/* Conteneur principal */
+
+
+
+.card {
+  padding: 60px;
+  border: none;
+  
+ 
+  max-width: 1200px; /* Limite la largeur à 500px */
+  margin: 0 auto;   /* Centre la carte horizontalement */
+  margin-top: 10%;
 }
 
-/* Title */
-h1 {
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 700;
+/* Champ de recherche */
+input[pInputText] {
+  padding: 6px 10px;
+  
+  
+  width: 20%; /* S'adapte à la largeur du conteneur */
+  
+  color: #5c5358;
+  background-color: #f9f7f7;
 }
 
-/* Table styles */
-table {
-  width: 100%;
+
+/* Tableau */
+.p-table {
+  width: 100%; /* S'adapte à la largeur de la carte */
   border-collapse: collapse;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-thead {
-  background: linear-gradient(90deg, #007bff, #00c6ff);
-  color: white;
-}
-
-th,
-td {
-  padding: 14px 18px;
+.p-table thead th {
+  background-color: #f4f4f4;
+  color: #97589b;
+  padding: 100px; 
   text-align: left;
-  border: none;
+  font-weight: bold;
+
+  
 }
 
-th {
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+.p-table tbody tr:hover {
+  background-color: #634272;
+  transition: background-color 0.3s ease;
+
 }
 
-tbody tr {
-  background-color: white;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+/* Boutons d'action */
+.p-button-rounded {
+  margin-right: 4px;
+  padding: 6px;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-size: 12px;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #f7f9fc;
-}
-
-tbody tr:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #e8f6ff;
-}
-
-/* Buttons in the last column */
-td:last-child {
-  text-align: right;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-/* Buttons */
-button {
-  padding: 10px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-button:first-child {
-  background-color: #28a745;
-  color: white;
-  font-weight: 600;
-}
-
-button:first-child:hover {
-  background-color: #218838;
-}
-
-button:last-child {
-  background-color: #dc3545;
-  color: white;
-  font-weight: 600;
-}
-
-button:last-child:hover {
-  background-color: #c82333;
-}
-
-/* Add User Button */
-button.add-user {
-  display: block;
-  margin-left: auto;
-  background: linear-gradient(90deg, #ff7e5f, #feb47b);
-  color: white;
-  margin-top: 0px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 6px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-button.add-user:hover {
-  background: linear-gradient(90deg, #ff6a4d, #fe9a6b);
-  transform: translateY(-2px);
-}
-
-/* Responsive Table */
-@media screen and (max-width: 768px) {
-  table {
-    font-size: 14px;
-  }
-  th, td {
-    padding: 10px 12px;
-  }
-  button {
-    font-size: 12px;
-    padding: 8px 10px;
-  }
-  button.add-user {
-    font-size: 14px;
-    padding: 10px 18px;
-  }
-}
-
-html, body {
-  height: 100%;
+.p-button-rounded:hover {
+  transform: scale(1.1);
  
 }
 
-:host {
+/* Bouton "Ajouter un utilisateur" (plus petit) */
+.p-button-success {
+  align-items: center;
+  background-color: initial;
+  background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(131, 93, 181, 0.84) 50%);
+  border-radius: 42px;
+  border-width: 0;
+  box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
+  color: #FFFFFF;
+  cursor: pointer;
   display: flex;
+  font-family: Quicksand,sans-serif;
+  font-size: 18px;
+  font-weight: 700;
   justify-content: center;
-  padding-top: 20px;
-  height: 100vh;
-  background: url('../../../assets/images/8.png') no-repeat center center fixed;
-  background-size: cover;
+  letter-spacing: .04em;
+  line-height: 26px;
+  margin: 0;
+  margin-left: 27%;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(219, 143, 174, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: 400px;
+}
+
+.p-button-success:hover {
+  background-image: linear-gradient(#B384C9, #391F5B 50%);
+  background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(131, 93, 181, 0.84) 50%);
+  background-color: #B384C9;
+
+}
+
+@media (min-width: 768px) {
+  .p-button-success {
+    font-size: 21px;
+    padding: 18px 34px;
+  }
+}
+
+/* Message vide */
+.p-datatable-emptymessage {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  padding: 25px;
+}
+th{
+  color: #1c0496;
+}
+.card{
+  width: 1500px;
+  margin-top: 5px;
+  border-radius:10px;
+  padding-top: 0px;
+  padding-bottom: 30px;
+}  
+h2{
+text-align: center;
+padding: 10px;
+color: #1c0496;
+margin-top: 10px;
+
+}
+.add-user-btn {
+  background: linear-gradient(135deg, #b0b3b8, #86888c); /* Même couleur */
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px; /* Bouton plus arrondi */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  text-transform: uppercase;
+  justify-content: center;
+  width: fit-content;
+  min-width: 220px;
+  margin-top: 0;
+}
+
+.add-user-btn:hover {
+  background: linear-gradient(135deg, #86888c, #6c6e72); /* Effet au survol */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.add-user-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-user-btn i {
+  font-size: 18px;
 }

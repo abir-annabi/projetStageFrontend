@@ -1,76 +1,105 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtService } from '../../service/jwt.service';
+import { Router } from '@angular/router';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+
+import { Table } from 'primeng/table';
+
+import { TagModule } from 'primeng/tag';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { PaginatorModule } from 'primeng/paginator';
+
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-gest-users',
   templateUrl: './gest-users.component.html',
   styleUrls: ['./gest-users.component.css'],
-  imports: [CommonModule, RouterModule,TranslateModule],
   standalone: true,
+  imports: [CommonModule, TableModule,PaginatorModule, InputTextModule, ButtonModule, ConfirmDialogModule,TableModule, TagModule, IconFieldModule, InputIconModule, MultiSelectModule, SelectModule],
+  providers: [ConfirmationService, MessageService]
 })
 export class GestUsersComponent implements OnInit {
-  users: any[] = []; // Contient "name", "email", et "role"
+  users: any[] = [];
+   loading: boolean = true;
+  globalFilter: string = '';
+ 
+  
+  
+  first: number = 0;
+  rows: number = 10;
+  totalRecords: number = 0; 
 
-  constructor(private jwtService: JwtService, private router: Router) {}
+  constructor(
+    private jwtService: JwtService,
+    private router: Router,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
-    this.fetchUsers(); // Charge les utilisateurs à l'initialisation
+    this.fetchUsers();
   }
 
   fetchUsers(): void {
     this.jwtService.gestionUsers().subscribe(
       (data) => {
-        console.log('Données brutes récupérées depuis le backend :', data);
-  
-        // Mappez les données utilisateurs et normalisez les rôles
         this.users = data.map((user: any) => ({
           ...user,
-          role:user.profile.role , // Normaliser le rôle
+          role: this.mapRole(user.profile.role)
         }));
-  
-        console.log('Données après mappage :', this.users);
+        this.loading = false;
       },
       (error) => console.error('Erreur lors de la récupération des utilisateurs', error)
     );
   }
-  
-  
-  
-  mapRole(role: string): string {
-    // Normaliser les rôles avant de les afficher
-    if (role === 'ROLE_ADMIN' || role === 'admin') {
-      return 'Admin';
-    }
-    if (role === 'ROLE_USER' || role === 'user') {
-      return 'User';
-    }
-    return 'Rôle inconnu'; // Valeur par défaut si le rôle est inexistant ou incorrect
+  onGlobalFilter(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.globalFilter = inputElement.value;
   }
   
-  
-  
+
+  mapRole(role: string): string {
+    if (role === 'ROLE_ADMIN' || role === 'admin') return 'Admin';
+    if (role === 'ROLE_USER' || role === 'user') return 'User';
+    return 'Rôle inconnu';
+  }
+
+  confirmDelete(userId: number): void {
+    this.confirmationService.confirm({
+      message: 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?',
+      accept: () => this.deleteUser(userId)
+    });
+  }
+
+  deleteUser(userId: number): void {
+    this.jwtService.deleteUser(userId).subscribe(
+      () => {
+        this.users = this.users.filter((user) => user.id !== userId);
+        this.messageService.add({ severity: 'success', summary: 'Succès', detail: 'Utilisateur supprimé' });
+      },
+      (error) => console.error('Erreur lors de la suppression de l’utilisateur', error)
+    );
+  }
 
   editUser(userId: number): void {
     this.router.navigate([`/edituser/${userId}`]);
   }
 
-  deleteUser(userId: number): void {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
-      this.jwtService.deleteUser(userId).subscribe(
-        () => {
-          console.log(`Utilisateur avec ID ${userId} supprimé avec succès`);
-          // Mise à jour locale des utilisateurs après suppression
-          this.users = this.users.filter((user) => user.id !== userId);
-        },
-        (error) => console.error('Erreur lors de la suppression de l’utilisateur', error)
-      );
-    }
-  }
-
   addUser(): void {
-    this.router.navigate(['/adduser']); // Redirige vers la page d'ajout
+    this.router.navigate(['/adduser']);
   }
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.fetchUsers(); // Recharge les utilisateurs en fonction de la page
+  }
+  
 }

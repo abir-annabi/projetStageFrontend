@@ -1,0 +1,44 @@
+<div class="form-wrapper">
+  <!-- Formulaire -->
+  <div class="container formbg">
+    <h2 class="text-center padding-bottom--15">Modifier la structure</h2>
+    
+    <form [formGroup]="structForm" (ngSubmit)="onSubmit()" class="box-root flex-direction--column">
+      <div class="form-group padding-top--24">
+        <label for="libelleAr">Libellé Arabe</label>
+        <input type="text" id="libelleAr" formControlName="libelleAr" class="field input" />
+      </div>
+
+      <div class="form-group padding-top--24">
+        <label for="libelleFr">Libellé Français</label>
+        <input type="text" id="libelleFr" formControlName="libelleFr" class="field input" />
+      </div>
+
+      <div class="form-group padding-top--24">
+        <label for="adresse">Adresse</label>
+        <input type="text" id="adresse" formControlName="adresse" class="field input" />
+      </div>
+
+      <div class="form-group padding-top--24">
+        <label>Structure</label>
+        <select for="parentStructureId" id="parentStructureId" formControlName="parentStructureId" class="field input">
+          <option value="">Sélectionner une structure</option>
+          <option *ngFor="let structure of structures" [value]="structure.id">
+            {{ structure.libelleFr }} - {{ structure.libelleAr }}
+          </option>
+        </select>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger text-danger">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="alert alert-success text-success">{{ successMessage }}</div>
+
+      <button type="submit" [disabled]="structForm.invalid" class="btn btn-primary padding-top--24">Sauvegarder</button>
+      <button type="button" (click)="cancel()" class="btn btn-secondary padding-top--24">Annuler</button>
+    </form>
+  </div>
+
+  <!-- Image à côté du formulaire -->
+  <div class="image-container">
+    <img src="assets/images/upd.png" alt="Illustration">
+  </div>
+</div>

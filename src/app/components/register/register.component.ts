@@ -5,13 +5,18 @@ import { JwtService } from '../../service/jwt.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { ButtonModule } from 'primeng/button';
+import { FloatLabel } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { Toast } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, CommonModule,TranslateModule]
+  imports: [ReactiveFormsModule, RouterModule, CommonModule,TranslateModule,ButtonModule,FloatLabel,InputTextModule,Toast,RouterModule],
+  providers:[MessageService]
 })
 export class RegisterComponent implements OnInit {
 

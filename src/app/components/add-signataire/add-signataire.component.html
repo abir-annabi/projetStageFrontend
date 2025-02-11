@@ -1,0 +1,66 @@
+<div class="form-wrapper">
+  <!-- Conteneur image à droite -->
+ 
+
+  <!-- Formulaire à gauche -->
+  <div class="container">
+    <h2>Ajouter un Signataire</h2>
+
+    <form [formGroup]="signataireForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Nom (Français)</label>
+        <input type="text" class="form-control" formControlName="nomFr" required>
+      </div>
+
+      <div class="form-group">
+        <label>Prénom (Français)</label>
+        <input type="text" class="form-control" formControlName="prenomFr" required>
+      </div>
+
+      <div class="form-group">
+        <label>Nom (Arabe)</label>
+        <input type="text" class="form-control" formControlName="nomAr">
+      </div>
+
+      <div class="form-group">
+        <label>Prénom (Arabe)</label>
+        <input type="text" class="form-control" formControlName="prenomAr">
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="text" class="form-control" formControlName="telephone" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName="email" required>
+      </div>
+
+      <div>
+        <label for="structureId">Structure:</label>
+        <select id="structureId" formControlName="structureId" required>
+          <option value="">-- Sélectionner une structure --</option>
+          <option *ngFor="let structure of structures" [value]="structure.id">
+             {{ structure.libelleFr }} - {{ structure.libelleAr }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group1">
+        <label for="checkbox">Actif</label>
+        <input  id="checkbox" type="checkbox" formControlName="actif">
+      </div>
+
+      <button type="submit" class="btn btn-success">Ajouter</button>
+      <button type="button" class="btn btn-secondary" (click)="router.navigate(['/gestSign'])">Annuler</button>
+    </form>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  </div>
+  <div class="image-container">
+    <img src="/assets/images/{C187EFC7-97E2-4F00-85B6-CF976CE020D9}.png" alt="Image signataire">
+  </div>
+</div>

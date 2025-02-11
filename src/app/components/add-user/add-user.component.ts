@@ -4,6 +4,7 @@ import { JwtService } from './../../service/jwt.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { StorageService } from '../../service/storage-service.service';
 
 @Component({
   selector: 'app-add-user',
@@ -14,31 +15,30 @@ import { TranslateModule } from '@ngx-translate/core';
 
 })
 export class AddUserComponent implements OnInit {
+
   registerForm!: FormGroup;
 
   constructor(
-    private jwtService: JwtService,
+    private service: JwtService,
     private fb: FormBuilder,
-    private router: Router
-  ) {}
+    private router: Router,
+    private storageService: StorageService
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]], // Le nom doit être composé uniquement de lettres
-      email: ['', [Validators.required, Validators.email]], // L'email doit être valide
-      password: ['', [
-        Validators.required,
-        Validators.minLength(6), // Longueur minimale de 6 caractères
-        this.uppercaseValidator, // Validation de la majuscule
-        this.digitValidator, // Validation du chiffre
-        this.specialCharValidator // Validation du caractère spécial
-      ]],
-      confirmPassword: ['', [Validators.required]], // La confirmation du mot de passe est requise
-      role: ['user', [Validators.required]], // Le rôle par défaut est "user"
+      name: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]], 
+      email: ['', [Validators.required, Validators.email, this.emailValidator]], 
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$'), Validators.maxLength(8)]], 
+      password: ['', [Validators.required, Validators.minLength(8), this.passwordComplexity]], 
+      confirmPassword: ['', [Validators.required]], 
+      role: ['', Validators.required] // Ajout du champ rôle
     }, { validator: this.passwordMatchValidator });
   }
+  
 
-  passwordMatchValidator(formGroup: FormGroup) {
+  // Validateur pour vérifier que les mots de passe correspondent
+  passwordMatchValidator(formGroup: FormGroup): void {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
     if (password !== confirmPassword) {
@@ -48,36 +48,44 @@ export class AddUserComponent implements OnInit {
     }
   }
 
-  // Validation de la majuscule
-  uppercaseValidator(control: any) {
-    const hasUpperCase = /[A-Z]/.test(control.value);
-    return hasUpperCase ? null : { uppercase: true };
-  }
-
-  // Validation du chiffre
-  digitValidator(control: any) {
-    const hasDigit = /\d/.test(control.value);
-    return hasDigit ? null : { digit: true };
-  }
-
-  // Validation du caractère spécial
-  specialCharValidator(control: any) {
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(control.value);
-    return hasSpecialChar ? null : { specialChar: true };
-  }
-
-  submitForm(): void {
-    if (this.registerForm.valid) {
-      this.jwtService.register(this.registerForm.value).subscribe(
-        (response) => {
-          alert('Utilisateur ajouté avec succès.');
-          this.router.navigate(['/gestUsers']); // Redirigez vers la page de gestion des utilisateurs
-        },
-        (error) => {
-          console.error('Erreur lors de l’ajout de l’utilisateur', error);
-          alert('Une erreur s’est produite lors de l’ajout de l’utilisateur.');
-        }
-      );
+  // Validateur personnalisé pour vérifier la complexité du mot de passe
+  passwordComplexity(control: any): { [key: string]: boolean } | null {
+    const value = control.value;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{8,}$/;
+    if (value && !passwordRegex.test(value)) {
+      return { passwordComplexity: true };
     }
+    return null;
+  }
+
+  // Validateur pour l'email (ajout de sécurité pour éviter des emails faibles)
+  emailValidator(control: any): { [key: string]: boolean } | null {
+    const value = control.value;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (value && !emailRegex.test(value)) {
+      return { emailInvalid: true };
+    }
+    return null;
+  }
+
+ 
+  // Soumettre le formulaire d'enregistrement
+  submitForm(): void {
+    const formData = {
+      ...this.registerForm.value
+    };
+
+    console.log(formData);
+    this.service.register(formData).subscribe(
+      (response) => {
+        if (response.id != null) {
+          alert("Ajout réussite!!");
+          this.router.navigate([`/gestUsers`]);
+        }
+      },
+      (error) => {
+        alert("Erreur lors de l\'Ajout. Essayez à nouveau. Peut étre Cet email est déjà enregistré.");
+      }
+    );
   }
 }

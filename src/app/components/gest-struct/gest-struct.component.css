@@ -1,0 +1,149 @@
+/* Conteneur principal */
+.card {
+    padding: 60px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ede2e2;
+    max-width: 900px; /* Limite la largeur à 500px */
+    margin: 0 auto;   /* Centre la carte horizontalement */
+    margin-top: 10%;
+    padding-top: 10px;
+
+  }
+  
+  /* Champ de recherche */
+  input[pInputText] {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* S'adapte à la largeur du conteneur */
+    box-sizing: border-box;
+    color: #5c5358;
+    background-color: #f9f7f7;
+    padding-top: 10px;
+  }
+  
+  input[pInputText]:focus {
+    border-color: #007ad9;
+    box-shadow: 0 0 5px rgba(0, 122, 217, 0.5);
+    outline: none;
+  }
+  
+  /* Tableau */
+  .p-table {
+    width: 100%; /* S'adapte à la largeur de la carte */
+    border-collapse: collapse;
+    background-color: #fff; /* Couleur de fond blanche pour le tableau */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    border-radius: 8px; /* Coins arrondis */
+  }
+  
+  .p-table thead th {
+    background-color: #f4f4f4;
+    color: #97589b;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .p-table tbody tr:hover {
+    background-color: #f1f1f1; /* Couleur au survol */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Boutons d'action */
+  .p-button-rounded {
+    margin-right: 4px;
+    padding: 6px;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 12px;
+  }
+  
+  .p-button-rounded:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Bouton "Ajouter une structure" */
+  .p-button-success {
+
+    align-items: center;
+    background-color: initial;
+    background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(131, 93, 181, 0.84) 50%);
+    border-radius: 42px;
+    border-width: 0;
+    box-shadow: rgba(78, 129, 205, 0.24) 0 2px 2px, rgba(179, 132, 201, 0.4) 0 8px 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    font-family: Quicksand, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    justify-content: center;
+    letter-spacing: .04em;
+    line-height: 20px;
+    
+    margin-left: 27%;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px, rgba(255, 251, 251, 0.927) 0 0 12px, rgba(7, 49, 187, 0.6) 1px 1px 4px, rgba(57, 31, 91, 0.32) 4px 4px 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: 400px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .p-button-success:hover {
+    background-image: linear-gradient(#708ff7, #3c1fcd 50%);
+    background-color: #7d4299;
+
+  }
+  
+  @media (min-width: 768px) {
+    .p-button-success {
+      font-size: 21px;
+      padding: 18px 34px;
+    }
+  }
+  
+  /* Message vide */
+  .p-datatable-emptymessage {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+    padding: 25px;
+  }
+  
+  /* Pour les titres du tableau */
+  th {
+    color: #1c0496;
+    padding: 12px;
+  }
+.container{
+    width: 900px;
+    margin-top: 20px;
+    background-color: #b7ceef;
+    border-radius:10px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 60px;
+
+    
+}  
+h2{
+ text-align: center;
+ padding: 10px;
+ color: #1c0496;
+ margin-top: 100px;
+
+
+}

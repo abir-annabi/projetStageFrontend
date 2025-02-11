@@ -1,16 +1,18 @@
 /* Welcome Section */
 .welcome-section {
   height: 100vh;
-  background: url('../../assets/images/Blue Illustrative Research Report Presentation.png') no-repeat center center/cover;
+  background: url('/assets/images/19.png') no-repeat center center/cover;
   display: flex;
   justify-content: flex-start; /* Align horizontally to the left */
   align-items: flex-start; /* Align vertically to the top */
-  padding: 50px; /* Spacing from the edges */
+/* Spacing from the edges */
   overflow: hidden;
+
 }
 
+
 .welcome-section .container {
-  color: white;
+  color: #5164ed;
   position: relative;
   max-width: 40%; /* Limit the text block's width */
   margin-left: 0; /* Force the text to the very left */
@@ -62,4 +64,29 @@
 }
 p{
   color: black;
+}
+.welcome-text {
+  position: absolute;
+  top: 10%; /* Ajuste selon la position exacte souhaitée */
+  left: 70%; /* Décale vers la gauche */
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(100, 43, 100); /* Jaune pour s'harmoniser avec la zone */ /* Légère transparence pour la lisibilité */
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.welcome-text2 {
+  position: absolute;
+/* Décale vers la gauche */
+top: 20%; /* Ajuste selon la position exacte souhaitée */
+  left: 65%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(100, 43, 100); /* Jaune pour s'harmoniser avec la zone */ /* Légère transparence pour la lisibilité */
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-align: center;
 }

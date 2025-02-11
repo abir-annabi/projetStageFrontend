@@ -1,34 +1,51 @@
-<div class="container">
-  <h2>{{ 'Connexion' | translate }}</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="container" id="container">
+  <p-toast></p-toast>
+  <div class="form-container sign-in-container">
   <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    <h1>{{ 'Login' | translate }}</h1>
+    
+    <p-floatLabel variant="in">
     <!-- Champ email -->
-    <div class="form-group">
-      <label for="email">{{ 'Email' | translate }}</label>
       <input
+      pInputText id="email"
         type="email"
-        class="form-control"
-        id="email"
         formControlName="email"
+        autocomplete="off"
       />
-      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-danger">
-        <small>{{ 'EmailRequired' | translate }}</small>
-      </div>
-    </div>
+      <label for="email" >{{ 'Email' | translate }}</label>
+
+    </p-floatLabel>
+
+    <span *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="block p-error">
+      <div *ngIf="loginForm.controls['email'].errors?.['required']">Email est requis *</div>
+  </span>
+    
 
     <!-- Champ mot de passe -->
-    <div class="form-group">
-      <label for="password">{{ 'Password' | translate }}</label>
+    <p-floatLabel variant="in">
       <input
+      pInputText id="password"
         type="password"
-        class="form-control"
-        id="password"
         formControlName="password"
       />
-      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger">
-        <small>{{ 'PasswordRequired' | translate }}</small>
-      </div>
-    </div>
+      <label for="password" >{{ 'Password' | translate }}</label>
 
+    </p-floatLabel>
+    <span *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="block p-error">
+      <div *ngIf="loginForm.controls['password'].errors?.['required']">Mot de passe est requis *</div>
+  </span>
+    
+      <p-floatLabel variant="in">
     <!-- Champ Google reCAPTCHA -->
     <div class="form-group" *ngIf="showReCaptcha">
       <ngx-recaptcha2
@@ -40,18 +57,38 @@
         <small>{{ 'ReCaptchaRequired' | translate }}</small>
       </div>
     </div>
+  </p-floatLabel>
 
     <!-- Bouton Login -->
     <button
       type="submit"
-      class="btn btn-primary"
+      class="button-81"
       [disabled]="loginForm.invalid || isSubmitting"
     >
       {{ isSubmitting ? ('LoggingIn' | translate) : ('LoginButton' | translate) }}
     </button>
 
-    <!-- Bouton vers l'inscription -->
-    <p>{{ 'RegisterPrompt' | translate }}</p>
-    <a href="/register" class="btn btn-secondary">{{ 'RegisterButton' | translate }}</a>
   </form>
+</div> 
+
+<div class="overlay-container">
+    <div class="overlay">
+        <div class="overlay-panel overlay-right">
+            <h1 class="h1">Bienvenue !</h1>
+            <img src="assets/images/stock-vector-group-of-happy-people-standing-together-waving-and-inviting-new-customer-colleague-concept-of-1833835885-removebg-preview.png" style="width: 300px;height: 200px;">
+            <p>Vous n'avez pas de compte ?</p>
+            <p-button label="Créer un compte" routerLink="/register" class="button-72" role="button"></p-button>
+
+        </div>
+        
+    </div>
 </div>
+
+</div>
+</body>
+</html>
+
+
+
+
+

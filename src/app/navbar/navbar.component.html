@@ -1,16 +1,69 @@
-<nav class="custom-navbar" *ngIf="showNavbar">
-  <div class="logo">
-    <span>{{ "app" | translate }}</span>
-  </div>
-  <ul class="nav-links">
-    <li class="nav-item">
-      <a routerLink="/home" class="nav-link">{{ 'Home' | translate }}</a>
+<!-- Navbar -->
+<nav id="navbar" *ngIf="showNavbar">
+  <ul class="navbar-items flexbox-col">
+    <li class="navbar-logo flexbox-left">
+      <a class="navbar-item-inner flexbox" >
+        <img src="/assets/images/icon-removebg-preview.png" width="500" height="150">
+      </a>
+      <span class="user-name">{{ userName }}</span> 
     </li>
-    <li class="nav-item" *ngIf="isAdmin">
-      <a routerLink="/gestUsers" class="nav-link">{{ 'Gestion des Utilisateurs' | translate }}</a>
+    <li class="navbar-item flexbox-left" *ngIf="isAdmin">
+      <a class="navbar-item-inner flexbox-left" routerLink="/home">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <img src="/assets/images/2-removebg-preview.png" width="200px" height="100px">
+        </div>
+        <span class="link-text">Home</span>
+      </a>
     </li>
-    <li class="nav-item">
-      <a href="javascript:void(0);" (click)="logout()" class="nav-link">{{ 'Déconnexion' | translate }}</a>
+    <li class="navbar-item flexbox-left" *ngIf="isAdmin">
+      <a class="navbar-item-inner flexbox-left" routerLink="/gestUsers">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <img src="/assets/images/4-removebg-preview.png" width="200px" height="100px">
+        </div>
+        <span class="link-text">Gestion des Utilisateurs</span>
+      </a>
+    </li>
+    <li class="navbar-item flexbox-left"  *ngIf="isAdmin">
+      <a class="navbar-item-inner flexbox-left" routerLink="/gestStruct">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <img src="/assets/images/8-removebg-preview.png" width="300px" height="100px">
+        </div>
+        <span class="link-text">Gestion des Structures</span>
+      </a>
+    </li>
+    
+    <li class="navbar-item flexbox-left" *ngIf="isAdmin">
+      <a class="navbar-item-inner flexbox-left" routerLink="/gestType">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <img src="/assets/images/municipal-removebg-preview.png" width="200px" height="100px">
+        </div>
+        <span class="link-text">Gest Type Structures</span>
+      </a>
+    </li>
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" routerLink="/gestSign">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <img src="/assets/images/6-removebg-preview.png" width="200px" height="100px">
+        </div>
+        <span class="link-text">Gestion des Signataires</span>
+      </a>
+    </li>
+  
+  <li class="navbar-item flexbox-left">
+    <a class="navbar-item-inner flexbox-left" routerLink="/gestTypedemande">
+      <div class="navbar-item-inner-icon-wrapper flexbox">
+        <img src="/assets/images/1000_F_245242050_YeKpxzzutMROyfD1UD6BQLUULLEhQOXo-removebg-preview.png" width="150px" height="60px">
+      </div>
+      <span class="link-text">Gest. des Types Demande </span>
+    </a>
+  </li>
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" (click)="logout()">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <img src="/assets/images/3-removebg-preview.png" width="200px" height="100px">
+        </div>
+        <span class="link-text">Déconnexion</span>
+      </a>
     </li>
   </ul>
 </nav>

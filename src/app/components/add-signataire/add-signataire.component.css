@@ -1,0 +1,142 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+body {
+  background-color: #f1f5f8;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin: 0;
+}
+
+/* Conteneur pour aligner le formulaire et l'image */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* Espacement réduit entre l’image et le formulaire */
+  flex-wrap: wrap; /* Permet de s'ajuster à l'écran si nécessaire */
+  margin-left: 120px;
+  
+}
+
+/* Style du formulaire */
+.container {
+  width: 320px; /* Formulaire plus petit */
+  padding: 10px;
+  background-color: #eae8e8;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #4a90e2;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px rgba(74, 144, 226, 0.3);
+}
+
+button {
+  padding: 10px 10px;
+  font-size: 14px;
+  background-color: #0213d3;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 30%; /* Le bouton prend toute la largeur du formulaire */
+  margin-bottom: 5px;
+  margin-left: 30px;
+  margin-right: 30px;
+
+}
+
+button:disabled {
+  background-color: #b3bdbb;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #0b0784;
+  color: #b3bdbb;
+}
+
+button:active {
+  background-color: #336b4e;
+}
+
+.alert {
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Style de l’image */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px; /* Taille maximale de l'image */
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.form-group1{
+  text-align: center;
+}

@@ -1,19 +1,23 @@
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { JwtService } from './../../service/jwt.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-
-
+import { ButtonModule } from 'primeng/button';
+import { FloatLabel } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { Toast } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, NgxCaptchaModule, CommonModule,TranslateModule]
+  imports: [ReactiveFormsModule, NgxCaptchaModule, CommonModule,TranslateModule,ButtonModule,FloatLabel,InputTextModule,Toast,RouterModule],
+  providers:[MessageService]
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   loginForm!: FormGroup;
@@ -85,6 +89,7 @@ ngOnInit(): void {
             console.log(jwtToken);
             if (typeof localStorage !== 'undefined') {
               localStorage.setItem('jwt', jwtToken);
+              this.service.updateAdminStatus();
             }
             this.router.navigateByUrl('/home');
           }

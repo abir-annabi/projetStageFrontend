@@ -1,0 +1,31 @@
+<h2 class="text-xl font-bold ">Gestion des Types de Demande</h2>
+<div class="p-4">
+   
+  
+    <div class="mb-4" id="bord">
+      <input [(ngModel)]="newTypeDemandeLibelle" placeholder="Nouveau Type de Demande" class="border p-2 mr-2">
+      <button (click)="addTypeDemande()" class="bg-blue-500 text-white px-4 py-2 rounded">Ajouter</button>
+    </div>
+  
+    <div *ngFor="let type of typeDemandes" id="bord" class="border p-4 rounded mb-4">
+      <div class="flex items-center justify-between">
+        <input [(ngModel)]="type.libelle" class="border p-2 mr-2">
+        <button (click)="updateTypeDemande(type)" class="bg-green-500 text-white px-2 py-1 rounded mr-2">Modifier</button>
+        <button (click)="deleteTypeDemande(type.id)" class="bg-red-500 text-white px-2 py-1 rounded">Supprimer</button>
+      </div>
+  
+      <div class="ml-4 mt-2">
+        <h4 class="font-semibold">Natures :</h4>
+        <div *ngFor="let nature of type.natures" class="flex items-center mt-1">
+          <input [(ngModel)]="nature.libelle" class="border p-1 mr-2">
+          <button (click)="updateNature(nature, type.id)" class="bg-green-400 text-white px-2 py-1 rounded mr-1">Modifier</button>
+          <button (click)="deleteNature(nature.id)" class="bg-red-400 text-white px-2 py-1 rounded">Supprimer</button>
+        </div>
+  
+        <div class="mt-2">
+          <input [(ngModel)]="newNatureLibelle" placeholder="Nouvelle Nature" class="border p-1 mr-2">
+          <button (click)="addNature(type)" class="bg-blue-400 text-white px-2 py-1 rounded">Ajouter Nature</button>
+        </div>
+      </div>
+    </div>
+  </div>

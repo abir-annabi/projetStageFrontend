@@ -1,59 +1,125 @@
-<div class="container">
-  <h2>{{ 'Register' | translate }}</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+  <i class="pi-arrow-left" style="font-size: 2.5rem"></i>
+<div class="container" id="container">
+  <p-toast></p-toast>
+  <div class="form-container sign-in-container">
   <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
-    <!-- Nom -->
-    <div class="form-group">
-      <label for="name">{{ 'Name' | translate }}</label>
-      <input type="text" class="form-control" id="name" formControlName="name" />
-      <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger">
+    <h1>{{ 'Login' | translate }}</h1>
+
+    <p-floatLabel variant="in">
+          <input
+          pInputText id="name"
+            type="text"
+            formControlName="name"
+            autocomplete="off"
+          />
+          <label for="name" >{{ 'name' | translate }}</label>
+    </p-floatLabel>
+        <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="block p-error">
         <div *ngIf="registerForm.get('name')?.hasError('required')">{{ 'NameRequired' | translate }}</div>
         <div *ngIf="registerForm.get('name')?.hasError('pattern')">{{ 'NamePattern' | translate }}</div>
       </div>
+
+      <p-floatLabel variant="in">
+        <input
+        pInputText id="email"
+          type="email"
+          formControlName="email"
+          autocomplete="off"
+        />
+        <label for="email" >{{ 'email' | translate }}</label>
+  </p-floatLabel>
+      <div *ngIf="registerForm.get('email')?.touched && registerForm.get('name')?.invalid" class="block p-error">
+      <div *ngIf="registerForm.get('email')?.hasError('required')">{{ 'EmailRequired' | translate }}</div>
+      <div *ngIf="registerForm.get('email')?.hasError('pattern')">{{ 'EmailPattern' | translate }}</div>
     </div>
 
-    <!-- Email -->
-    <div class="form-group">
-      <label for="email">{{ 'Email' | translate }}</label>
-      <input type="email" class="form-control" id="email" formControlName="email" />
-      <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger">
-        <div *ngIf="registerForm.get('email')?.hasError('required')">{{ 'EmailRequired' | translate }}</div>
-        <div *ngIf="registerForm.get('email')?.hasError('email')">{{ 'EmailInvalid' | translate }}</div>
-        <div *ngIf="registerForm.get('email')?.hasError('emailInvalid')">{{ 'EmailGeneric' | translate }}</div>
-      </div>
-    </div>
+    
+    <p-floatLabel variant="in">
+    <!-- Champ email -->
+      <input
+      pInputText id="phoneNumber"
+        type="number"
+        formControlName="phoneNumber"
+        autocomplete="off"
+      />
+      <label for="phoneNumber" >{{ 'phoneNumber' | translate }}</label>
 
-    <!-- Numéro de téléphone -->
-    <div class="form-group">
-      <label for="phoneNumber">{{ 'PhoneNumber' | translate }}</label>
-      <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" />
-      <div *ngIf="registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid" class="text-danger">
+    </p-floatLabel>
+
+    <div *ngIf="registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid" class="block p-error">
         <div *ngIf="registerForm.get('phoneNumber')?.hasError('required')">{{ 'PhoneNumberRequired' | translate }}</div>
         <div *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">{{ 'PhoneNumberPattern' | translate }}</div>
         <div *ngIf="registerForm.get('phoneNumber')?.hasError('maxlength')">{{ 'PhoneNumberMaxLength' | translate }}</div>
       </div>
-    </div>
+    
 
-    <!-- Mot de passe -->
-    <div class="form-group">
-      <label for="password">{{ 'Password' | translate }}</label>
-      <input type="password" class="form-control" id="password" formControlName="password" />
-      <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger">
+    <!-- Champ mot de passe -->
+    <p-floatLabel variant="in">
+      <input
+      pInputText id="password"
+        type="password"
+        formControlName="password"
+      />
+      <label for="password" >{{ 'Password' | translate }}</label>
+
+    </p-floatLabel>
+    <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="block p-error">
         <div *ngIf="registerForm.get('password')?.hasError('required')">{{ 'PasswordRequired' | translate }}</div>
         <div *ngIf="registerForm.get('password')?.hasError('minlength')">{{ 'PasswordMinLength' | translate }}</div>
         <div *ngIf="registerForm.get('password')?.hasError('passwordComplexity')">{{ 'PasswordComplexity' | translate }}</div>
       </div>
-    </div>
 
-    <!-- Confirmation du mot de passe -->
-    <div class="form-group">
-      <label for="confirmPassword">{{ 'ConfirmPassword' | translate }}</label>
-      <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" />
-      <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid" class="text-danger">
-        <div *ngIf="registerForm.get('confirmPassword')?.hasError('required')">{{ 'ConfirmPasswordRequired' | translate }}</div>
-        <div *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch')">{{ 'PasswordMismatch' | translate }}</div>
-      </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">{{ 'Register' | translate }}</button>
+    
+      <p-floatLabel variant="in">
+        <input
+        pInputText id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+        />
+        <label for="confirmPassword" >{{ 'confirmPassword' | translate }}</label>
+  
+      </p-floatLabel>
+      <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('password')?.invalid" class="block p-error">
+        <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid" class="text-danger">
+            <div *ngIf="registerForm.get('confirmPassword')?.hasError('required')">{{ 'ConfirmPasswordRequired' | translate }}</div>
+            <div *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch')">{{ 'PasswordMismatch' | translate }}</div>
+          </div>
+        </div>
+
+    <!-- Bouton Login -->
+    <button type="submit" class="button-72" [disabled]="registerForm.invalid">{{ 'Register' | translate }}</button>
+
   </form>
+</div> 
+
+<div class="overlay-container">
+    <div class="overlay">
+        <div class="overlay-panel overlay-right">
+            <h1 class="h1">Bienvenue !</h1>
+            <img src="assets/images/stock-vector-group-of-happy-people-standing-together-waving-and-inviting-new-customer-colleague-concept-of-1833835885-removebg-preview.png" style="width: 300px;height: 200px;">
+           
+
+        </div>
+        
+    </div>
 </div>
+
+</div>
+</body>
+</html>
+
+
+
+
+

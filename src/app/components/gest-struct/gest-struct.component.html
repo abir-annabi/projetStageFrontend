@@ -1,0 +1,42 @@
+<h2>Gestion des Structures</h2> 
+<div class="container">
+  
+
+  <p-table #dt [value]="structures" [paginator]="true" [rows]="5" [globalFilterFields]="['code', 'libelleFr', 'libelleAr', 'adresse']">
+    <ng-template pTemplate="caption">
+      <div class="flex justify-end">
+        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Recherche..." class="form-control" />
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
+        <th pSortableColumn="libelleFr">Libellé (Français) <p-sortIcon field="libelleFr"></p-sortIcon></th>
+        <th pSortableColumn="libelleAr">Libellé (Arabe) <p-sortIcon field="libelleAr"></p-sortIcon></th>
+        <th pSortableColumn="adresse">Adresse <p-sortIcon field="adresse"></p-sortIcon></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-structure>
+      <tr>
+        <td>{{ structure.code }}</td>
+        <td>{{ structure.libelleFr }}</td>
+        <td>{{ structure.libelleAr }}</td>
+        <td>{{ structure.adresse }}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2" (click)="editStructure(structure.id)"></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteStructure(structure.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr><td colspan="5">Aucune structure trouvée.</td></tr>
+    </ng-template>
+  </p-table>
+
+  <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
+  <button pButton type="button" label="Ajouter une structure" icon="pi pi-plus" class="p-button-success mb-3" (click)="router.navigate(['/addStruct'])"></button>
+</div>
