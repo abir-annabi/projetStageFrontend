@@ -5,25 +5,35 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CommonModule } from '@angular/common';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
-  selector: 'app-gest-signataire',
-  templateUrl: './gest-signataire.component.html',
-  styleUrls: ['./gest-signataire.component.css'],
-  standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, InputTextModule, FormsModule,DropdownModule],
-  providers: [MessageService]
+    selector: 'app-gest-signataire',
+    templateUrl: './gest-signataire.component.html',
+    styleUrls: ['./gest-signataire.component.css'],
+    imports: [CommonModule, TableModule, ButtonModule, InputTextModule, FormsModule, DropdownModule,ConfirmDialogModule],
+    providers: [MessageService],
+    standalone:true
 })
 export class GestSignataireComponent implements OnInit {
   signataires: any[] = [];
   structures: any[] = [];
   clonedSignataires: { [s: string]: any } = {};
   errorMessage: string = '';
+  paginatedUsers: any[] = [];  // Utilisateurs affichés sur la page actuelle
+  currentPage: number = 1;
+  rowsPerPage: number = 10;  // Nombre de signataires par page
+  totalRecords: number = 0;
+  paginatedSignataires: any[] = [];  // Données paginées
+  
+  loading: boolean = true;
 
+  // Variables pour la pagination
+  
   constructor(private jwtService: JwtService, private router: Router, private messageService: MessageService) {}
 
   ngOnInit(): void {
@@ -39,19 +49,41 @@ export class GestSignataireComponent implements OnInit {
       error: (err) => console.error('Erreur lors du chargement des structures', err)
     });
   }
-
-  loadSignataires() {
-    this.jwtService.getAllSignataires().subscribe({
-      next: (data) => {
-        this.signataires = data.map((signataire: any) => {
-          const structure = this.structures.find((s: any) => s.id === signataire.structureId);
-          signataire.structure = structure || null;
-          return signataire;
-        });
-      },
-      error: (err) => console.error('Erreur lors du chargement des signataires', err)
-    });
+  updatePaginatedUsers(): void {
+    const start = (this.currentPage - 1) * this.rowsPerPage;
+    const end = start + this.rowsPerPage;
+    this.paginatedUsers = this.signataires.slice(start, end);
   }
+  
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePaginatedSignataires();
+  }
+  get totalPages(): number {
+    return Math.ceil(this.totalRecords / this.rowsPerPage);
+  }
+  
+loadSignataires() {
+  this.jwtService.getAllSignataires().subscribe({
+    next: (data) => {
+      this.signataires = data.map((signataire: any) => {
+        const structure = this.structures.find((s: any) => s.id === signataire.structureId);
+        return { ...signataire, structure: structure || null };
+      });
+      this.totalRecords = this.signataires.length; // ⚠️ Mise à jour du total des enregistrements
+      this.updatePaginatedSignataires();
+      this.loading = false;
+    },
+    error: (err) => console.error('Erreur lors du chargement des signataires', err)
+  });
+}
+updatePaginatedSignataires(): void {
+  const start = (this.currentPage - 1) * this.rowsPerPage;
+  const end = start + this.rowsPerPage;
+  this.paginatedSignataires = this.signataires.slice(start, end);
+}
+
+
 
   deleteSignataire(id: number) {
     if (confirm('Voulez-vous vraiment supprimer ce signataire ?')) {
@@ -92,6 +124,7 @@ export class GestSignataireComponent implements OnInit {
     });
   }
 
+  
   onRowEditCancel(signataire: any, index: number) {
     this.signataires[index] = this.clonedSignataires[signataire.id];
     delete this.clonedSignataires[signataire.id];

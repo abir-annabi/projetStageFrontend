@@ -1,4 +1,3 @@
-<h2 class="text-2xl font-semibold mb-4">Gestion des Utilisateurs</h2>
 
 <div class="card p-4 shadow-lg rounded-lg">
   <div class="flex justify-between items-center mb-3">
@@ -15,7 +14,7 @@
     <button 
       pButton 
       type="button" 
-      label="Ajouter" 
+      label="Ajouter un utilisateur" 
       icon="pi pi-user-plus" 
       class="p-button-success p-button-sm" 
       (click)="addUser()"
@@ -24,7 +23,7 @@
 
   <p-table 
     #dt 
-    [value]="users" 
+    [value]="paginatedUsers" 
     responsiveLayout="scroll" 
     [globalFilterFields]="['name', 'email', 'role']"
     [loading]="loading"
@@ -34,6 +33,9 @@
         <th pSortableColumn="name">Nom <p-sortIcon field="name"></p-sortIcon></th>
         <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
         <th pSortableColumn="role">Rôle <p-sortIcon field="role"></p-sortIcon></th>
+        <th pSortableColumn="phoneNumber">Téléphone <p-sortIcon field="phoneNumber"></p-sortIcon></th>
+<th pSortableColumn="structure">Structure <p-sortIcon field="structure"></p-sortIcon></th>
+
         <th class="text-center">Actions</th>
       </tr>
     </ng-template>
@@ -48,6 +50,8 @@
             {{ user.role }}
           </span>
         </td>
+        <td>{{ user.phoneNumber || 'Non défini' }}</td>
+      <td>{{ user.structure?.name || 'Aucune structure' }}</td>
         <td class="text-center">
           <button 
             pButton 
@@ -72,14 +76,15 @@
     </ng-template>
   </p-table>
 
-  <!-- PAGINATION -->
-  <p-paginator 
-    (onPageChange)="onPageChange($event)" 
-    [first]="first" 
-    [rows]="rows" 
-    [totalRecords]="totalRecords" 
-    [rowsPerPageOptions]="[5, 10, 20]" 
-  ></p-paginator>
-</div>
+
+  <div class="flex justify-center mt-4 space-x-2">
+    <button 
+      *ngFor="let page of [].constructor(totalPages); let i = index" 
+      (click)="onPageChange(i + 1)"
+      [ngClass]="{'bg-blue-500 text-white px-3 py-1 rounded': i + 1 === currentPage, 
+                  'bg-gray-200 px-3 py-1 rounded': i + 1 !== currentPage}" id="">
+      {{ i + 1 }}
+    </button>
+  </div>
 
 <p-confirmDialog header="Confirmation" message="Voulez-vous supprimer cet utilisateur ?" icon="pi pi-exclamation-triangle"></p-confirmDialog>

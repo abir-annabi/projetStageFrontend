@@ -6,11 +6,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet,NavbarComponent,TranslateModule ], 
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    imports: [RouterOutlet, NavbarComponent, TranslateModule],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'frontendProjetStage';

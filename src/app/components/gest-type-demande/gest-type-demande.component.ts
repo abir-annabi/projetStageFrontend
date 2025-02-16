@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-gest-type-demande',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './gest-type-demande.component.html',
-  styleUrls: ['./gest-type-demande.component.css']
+    selector: 'app-gest-type-demande',
+    imports: [FormsModule, CommonModule],
+    templateUrl: './gest-type-demande.component.html',
+    styleUrls: ['./gest-type-demande.component.css']
 })
 export class GestTypeDemandeComponent implements OnInit {
   typeDemandes: any[] = [];

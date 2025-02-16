@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtService } from '../../service/jwt.service';
@@ -9,17 +10,24 @@ import { MessageService } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-gest-type',
-  templateUrl: './gest-type.component.html',
-  styleUrls: ['./gest-type.component.css'],
-  standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, InputTextModule,FormsModule],
-  providers: [MessageService]
+    selector: 'app-gest-type',
+    templateUrl: './gest-type.component.html',
+    styleUrls: ['./gest-type.component.css'],
+    imports: [CommonModule, TableModule, ButtonModule, InputTextModule, FormsModule],
+    providers: [MessageService]
 })
 export class GestTypeComponent implements OnInit {
   types: any[] = [];
   errorMessage: string = '';
   clonedTypes: { [s: string]: any } = {};
+  paginatedUsers: any[] = [];  // Utilisateurs affichés sur la page actuelle
+
+
+// Variables pour la pagination
+currentPage: number = 1;
+rowsPerPage: number = 10;  // Nombre d'utilisateurs par page
+totalRecords: number = 0;
+
 
   constructor(private jwtService: JwtService, public router: Router, private messageService: MessageService) {}
 
@@ -32,6 +40,8 @@ export class GestTypeComponent implements OnInit {
     this.jwtService.getTypes().subscribe(
       (data) => {
         this.types = data;
+        this.totalRecords = this.types.length; // Met à jour le total des enregistrements
+        this.updatePaginatedUsers(); // Met à jour la pagination après chargement des données
       },
       (error) => {
         this.errorMessage = 'Erreur lors du chargement des types';
@@ -39,6 +49,22 @@ export class GestTypeComponent implements OnInit {
       }
     );
   }
+  
+  updatePaginatedUsers(): void {
+    const start = (this.currentPage - 1) * this.rowsPerPage;
+    const end = start + this.rowsPerPage;
+    this.paginatedUsers = this.types.slice(start, end);
+  }
+  
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePaginatedUsers();
+  }
+  
+  get totalPages(): number {
+    return Math.ceil(this.totalRecords / this.rowsPerPage);
+  }
+  
 
   // Supprimer un type
   deleteType(id: number): void {

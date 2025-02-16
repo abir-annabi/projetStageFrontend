@@ -5,11 +5,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-struct',
-  templateUrl: './edit-struct.component.html',
-  styleUrls: ['./edit-struct.component.css'],
-  standalone:true,
-  imports:[ReactiveFormsModule,CommonModule]
+    selector: 'app-edit-struct',
+    templateUrl: './edit-struct.component.html',
+    styleUrls: ['./edit-struct.component.css'],
+    imports: [ReactiveFormsModule, CommonModule]
 })
 export class EditStructComponent implements OnInit {
   structForm!: FormGroup;  // Déclaration du formulaire

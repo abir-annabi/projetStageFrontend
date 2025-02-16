@@ -3,14 +3,14 @@
   <ul class="navbar-items flexbox-col">
     <li class="navbar-logo flexbox-left">
       <a class="navbar-item-inner flexbox" >
-        <img src="/assets/images/icon-removebg-preview.png" width="500" height="150">
+        <img src="/assets/images/icon-removebg-preview.png" width="200">
       </a>
       <span class="user-name">{{ userName }}</span> 
     </li>
-    <li class="navbar-item flexbox-left" *ngIf="isAdmin">
+    <li class="navbar-item flexbox-left" >
       <a class="navbar-item-inner flexbox-left" routerLink="/home">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <img src="/assets/images/2-removebg-preview.png" width="200px" height="100px">
+          <img src="/assets/images/2-removebg-preview.png" width="100px">
         </div>
         <span class="link-text">Home</span>
       </a>
@@ -18,7 +18,7 @@
     <li class="navbar-item flexbox-left" *ngIf="isAdmin">
       <a class="navbar-item-inner flexbox-left" routerLink="/gestUsers">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <img src="/assets/images/4-removebg-preview.png" width="200px" height="100px">
+          <img src="/assets/images/4-removebg-preview.png" width="100px" >
         </div>
         <span class="link-text">Gestion des Utilisateurs</span>
       </a>
@@ -26,7 +26,7 @@
     <li class="navbar-item flexbox-left"  *ngIf="isAdmin">
       <a class="navbar-item-inner flexbox-left" routerLink="/gestStruct">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <img src="/assets/images/8-removebg-preview.png" width="300px" height="100px">
+          <img src="/assets/images/8-removebg-preview.png" width="100px" >
         </div>
         <span class="link-text">Gestion des Structures</span>
       </a>
@@ -35,24 +35,24 @@
     <li class="navbar-item flexbox-left" *ngIf="isAdmin">
       <a class="navbar-item-inner flexbox-left" routerLink="/gestType">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <img src="/assets/images/municipal-removebg-preview.png" width="200px" height="100px">
+          <img src="/assets/images/municipal-removebg-preview.png" width="100px" >
         </div>
         <span class="link-text">Gest Type Structures</span>
       </a>
     </li>
-    <li class="navbar-item flexbox-left">
+    <li class="navbar-item flexbox-left" *ngIf="isAdmin">
       <a class="navbar-item-inner flexbox-left" routerLink="/gestSign">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <img src="/assets/images/6-removebg-preview.png" width="200px" height="100px">
+          <img src="/assets/images/6-removebg-preview.png" width="100px" >
         </div>
         <span class="link-text">Gestion des Signataires</span>
       </a>
     </li>
   
-  <li class="navbar-item flexbox-left">
+  <li class="navbar-item flexbox-left" *ngIf="isAdmin">
     <a class="navbar-item-inner flexbox-left" routerLink="/gestTypedemande">
       <div class="navbar-item-inner-icon-wrapper flexbox">
-        <img src="/assets/images/1000_F_245242050_YeKpxzzutMROyfD1UD6BQLUULLEhQOXo-removebg-preview.png" width="150px" height="60px">
+        <img src="/assets/images/1000_F_245242050_YeKpxzzutMROyfD1UD6BQLUULLEhQOXo-removebg-preview.png" width="100px" height="30px">
       </div>
       <span class="link-text">Gest. des Types Demande </span>
     </a>
@@ -60,7 +60,7 @@
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" (click)="logout()">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <img src="/assets/images/3-removebg-preview.png" width="200px" height="100px">
+          <img src="/assets/images/3-removebg-preview.png" width="100px" >
         </div>
         <span class="link-text">Déconnexion</span>
       </a>

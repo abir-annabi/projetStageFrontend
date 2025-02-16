@@ -61,41 +61,7 @@ input[pInputText] {
  
 }
 
-/* Bouton "Ajouter un utilisateur" (plus petit) */
-.p-button-success {
-  align-items: center;
-  background-color: initial;
-  background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(131, 93, 181, 0.84) 50%);
-  border-radius: 42px;
-  border-width: 0;
-  box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: flex;
-  font-family: Quicksand,sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  justify-content: center;
-  letter-spacing: .04em;
-  line-height: 26px;
-  margin: 0;
-  margin-left: 27%;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(219, 143, 174, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: 400px;
-}
 
-.p-button-success:hover {
-  background-image: linear-gradient(#B384C9, #391F5B 50%);
-  background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(131, 93, 181, 0.84) 50%);
-  background-color: #B384C9;
-
-}
 
 @media (min-width: 768px) {
   .p-button-success {
@@ -116,7 +82,7 @@ th{
 }
 .card{
   width: 1500px;
-  margin-top: 5px;
+  margin-top: 25px;
   border-radius:10px;
   padding-top: 0px;
   padding-bottom: 30px;
@@ -128,40 +94,74 @@ color: #1c0496;
 margin-top: 10px;
 
 }
-.add-user-btn {
-  background: linear-gradient(135deg, #b0b3b8, #86888c); /* Même couleur */
+.p-button-success {
+  background: linear-gradient(135deg, #928b95, #333131); /* Dégradé violet-rouge */
   color: #fff;
-  border: none;
-  padding: 12px 24px;
+  font-weight: bold;
+  padding: 12px 20px;
   font-size: 16px;
-  font-weight: 600;
-  border-radius: 30px; /* Bouton plus arrondi */
-  cursor: pointer;
+  border-radius: 25px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre */
-  text-transform: uppercase;
-  justify-content: center;
+  gap: 8px;
   width: fit-content;
-  min-width: 220px;
-  margin-top: 0;
+  min-width: 150px;
+  margin: 10px auto;
+  align-items: right;
+  text-align: right;
+  margin-left: 5px;
 }
 
-.add-user-btn:hover {
-  background: linear-gradient(135deg, #86888c, #6c6e72); /* Effet au survol */
-  transform: translateY(-2px);
+.p-button-success:hover {
+  background: linear-gradient(135deg, #333131, #89818d); /* Inversion du gradient */
+  transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-.add-user-btn:active {
-  transform: translateY(1px);
+.p-button-success:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Conteneur de la pagination */
+.flex.justify-center {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* Boutons de pagination */
+.flex.justify-center button {
+  padding: 8px 14px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.add-user-btn i {
-  font-size: 18px;
+/* Bouton page active */
+.flex.justify-center button.bg-blue-500 {
+  background: linear-gradient(135deg, #4a4b61, #333131);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Boutons inactifs */
+.flex.justify-center button.bg-gray-200 {
+  background: #f4f4f4;
+  color: #333;
+}
+
+.flex.justify-center button:hover {
+  background: #ddd;
+  transform: scale(1.05);
+}
+
+/* Effet clic */
+.flex.justify-center button:active {
+  transform: scale(0.98);
 }

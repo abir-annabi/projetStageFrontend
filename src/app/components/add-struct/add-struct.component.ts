@@ -8,11 +8,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
-  selector: 'app-add-struct',
-  templateUrl: './add-struct.component.html',
-  styleUrls: ['./add-struct.component.css'],
-  standalone:true,
-  imports:[ReactiveFormsModule,CommonModule]
+    selector: 'app-add-struct',
+    templateUrl: './add-struct.component.html',
+    styleUrls: ['./add-struct.component.css'],
+    imports: [ReactiveFormsModule, CommonModule]
 })
 export class AddStructComponent implements OnInit {
   structForm!: FormGroup;  // Déclarer sans initialisation dans la déclaration

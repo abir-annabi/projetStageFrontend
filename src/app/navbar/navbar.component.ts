@@ -9,10 +9,9 @@
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
     providers: [TranslateStore],
-    standalone:true,
-    imports: [CommonModule,RouterLink,TranslateModule],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  })
+    imports: [CommonModule, RouterLink, TranslateModule],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
   export class NavbarComponent implements OnInit {
     isAdmin: boolean = true;
     showNavbar: boolean = true;

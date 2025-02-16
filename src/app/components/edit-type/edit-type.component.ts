@@ -6,11 +6,10 @@ import { JwtService } from '../../service/jwt.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-type',
-  standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
-  templateUrl: './edit-type.component.html',
-  styleUrl: './edit-type.component.css'
+    selector: 'app-edit-type',
+    imports: [ReactiveFormsModule, CommonModule],
+    templateUrl: './edit-type.component.html',
+    styleUrl: './edit-type.component.css'
 })
 
 export class EditTypeComponent implements OnInit {

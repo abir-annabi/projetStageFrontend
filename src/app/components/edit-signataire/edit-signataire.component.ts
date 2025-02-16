@@ -5,11 +5,10 @@ import { JwtService } from '../../service/jwt.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-signataire',
-  standalone: true,
-  templateUrl: './edit-signataire.component.html',
-  styleUrl: './edit-signataire.component.css',
-  imports:[ReactiveFormsModule,CommonModule]
+    selector: 'app-edit-signataire',
+    templateUrl: './edit-signataire.component.html',
+    styleUrl: './edit-signataire.component.css',
+    imports: [ReactiveFormsModule, CommonModule]
 })
 export class EditSignataireComponent implements OnInit {
   signataireForm: FormGroup;

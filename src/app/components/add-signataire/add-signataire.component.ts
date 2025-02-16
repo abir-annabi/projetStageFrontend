@@ -8,11 +8,10 @@ import { CommonModule } from '@angular/common';
 import { JwtService } from '../../service/jwt.service';
 
 @Component({
-  selector: 'app-add-signataire',
-  standalone: true,
-  imports: [RouterModule,TranslateModule,ReactiveFormsModule,CommonModule,FormsModule],
-  templateUrl: './add-signataire.component.html',
-  styleUrl: './add-signataire.component.css'
+    selector: 'app-add-signataire',
+    imports: [RouterModule, TranslateModule, ReactiveFormsModule, CommonModule, FormsModule],
+    templateUrl: './add-signataire.component.html',
+    styleUrl: './add-signataire.component.css'
 })
 
 

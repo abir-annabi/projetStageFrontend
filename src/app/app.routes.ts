@@ -29,7 +29,6 @@ export const routes: Routes = [
 { path: 'gestUsers', component: GestUsersComponent , canActivate: [AdminGuard]},     
 { path: 'adduser', component: AddUserComponent , canActivate: [AdminGuard]}, 
 { path: 'edituser/:id', component: EditUserComponent, canActivate: [AdminGuard] },
-{ path: 'verification', component: VerificationComponent },
 { path: 'gestSign', component: GestSignataireComponent ,canActivate: [AdminGuard]},
 { path: 'addSign', component: AddSignataireComponent ,canActivate: [AdminGuard]},
 { path: 'editSign/:id', component: EditSignataireComponent ,canActivate: [AdminGuard]},

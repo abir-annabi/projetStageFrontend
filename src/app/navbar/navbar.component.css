@@ -330,7 +330,7 @@ select {
 }
 
 .navbar-item-inner:hover {
-  background-color: #AC87C5 ;
+  background-color: #625a5e84 ;
   color: hsl(var(--white));
 
   box-shadow: 0 17px 30px -10px hsla(var(--black), 0.25);

@@ -67,8 +67,8 @@ p{
 }
 .welcome-text {
   position: absolute;
-  top: 10%; /* Ajuste selon la position exacte souhaitée */
-  left: 70%; /* Décale vers la gauche */
+  top: 20%; /* Ajuste selon la position exacte souhaitée */
+  left: 77%; /* Décale vers la gauche */
   transform: translate(-50%, -50%);
   font-size: 30px;
   font-weight: bold;
@@ -80,8 +80,8 @@ p{
 .welcome-text2 {
   position: absolute;
 /* Décale vers la gauche */
-top: 20%; /* Ajuste selon la position exacte souhaitée */
-  left: 65%;
+top: 26%; /* Ajuste selon la position exacte souhaitée */
+  left: 75%;
   transform: translate(-50%, -50%);
   font-size: 30px;
   font-weight: bold;

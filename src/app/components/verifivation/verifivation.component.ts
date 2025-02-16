@@ -7,11 +7,10 @@ import { CommonModule } from '@angular/common';
 import { JwtService } from '../../service/jwt.service';
 
 @Component({
-  selector: 'app-verification',
-  templateUrl: './verifivation.component.html',
-  styleUrls: ['./verifivation.component.css'],
-  standalone: true,
-  imports:[TranslateModule,ReactiveFormsModule,CommonModule]
+    selector: 'app-verification',
+    templateUrl: './verifivation.component.html',
+    styleUrls: ['./verifivation.component.css'],
+    imports: [TranslateModule, ReactiveFormsModule, CommonModule]
 })
 export class VerificationComponent {
   verificationForm: FormGroup;

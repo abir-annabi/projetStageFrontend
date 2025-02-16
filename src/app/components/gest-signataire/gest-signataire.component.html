@@ -1,16 +1,29 @@
-<h2 class="text-center padding-bottom--15">Gestion des Signataires</h2>
-<div class="container form-wrapper">
-  
-
+<div class="card p-4 shadow-lg rounded-lg">
   <div *ngIf="errorMessage" class="alert alert-danger text-danger">{{ errorMessage }}</div>
 
-  <p-table #dt [value]="signataires" dataKey="id" editMode="row" [paginator]="true" [rows]="5" [globalFilterFields]="['cmpps', 'nomFr', 'prenomFr', 'email']" class="formbg">
-    <ng-template pTemplate="caption">
-      <div class="flex justify-end">
-        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Recherche..." class="form-control" />
-      </div>
-    </ng-template>
+  <div class="flex justify-between items-center mb-3">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input 
+        pInputText 
+        type="text" 
+        class="p-inputtext-sm w-full md:w-72" 
+        (input)="dt.filterGlobal($any($event.target).value, 'contains')" 
+        placeholder="Rechercher un signataire..."
+      />
+    </span>
+    <button 
+      pButton 
+      type="button" 
+      label="Ajouter un signataire" 
+      icon="pi pi-plus" 
+      class="p-button-success p-button-sm" 
+      (click)="addSignataire()"
+    ></button>
+  </div>
+ 
 
+  <p-table #dt [value]="paginatedSignataires" dataKey="id" editMode="row" [paginator]="true" [rows]="10" [globalFilterFields]="['cmpps', 'nomFr', 'prenomFr', 'email']" responsiveLayout="scroll">
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="cmpps">CMNPS <p-sortIcon field="cmpps"></p-sortIcon></th>
@@ -19,97 +32,49 @@
         <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
         <th pSortableColumn="telephone">Téléphone <p-sortIcon field="telephone"></p-sortIcon></th>
         <th>Structure</th>
-        <th>Actions</th>
+        <th class="text-center">Actions</th>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-signataire let-editing="editing" let-ri="rowIndex">
-      <tr [pEditableRow]="signataire">
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="signataire.cmpps" />
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ signataire.cmpps }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="signataire.nomFr" />
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ signataire.nomFr }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="signataire.prenomFr" />
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ signataire.prenomFr }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="signataire.email" />
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ signataire.email }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="signataire.telephone" />
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ signataire.telephone }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        
-        <td>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <p-dropdown
-  [options]="structures"
-  [(ngModel)]="signataire.structure"
-  optionLabel="libelleFr"
-  placeholder="Sélectionner une structure">
-</p-dropdown>
-
-            
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ signataire.structure ? signataire.structure.libelleFr : 'Structure inconnue' }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        
-        <td>
-          <div class="flex items-center justify-center gap-2">
-            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(signataire)" text rounded severity="secondary"></button>
-            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(signataire)" text rounded severity="secondary"></button>
-            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(signataire, ri)" text rounded severity="secondary"></button>
-            <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteSignataire(signataire.id)"></button>
-          </div>
+    <ng-template pTemplate="body" let-signataire>
+      <tr>
+        <td>{{ signataire.cmpps }}</td>
+        <td>{{ signataire.nomFr }}</td>
+        <td>{{ signataire.prenomFr }}</td>
+        <td>{{ signataire.email }}</td>
+        <td>{{ signataire.telephone }}</td>
+        <td>{{ signataire.structure ? signataire.structure.libelleFr : 'Structure inconnue' }}</td>
+        <td class="text-center">
+          <button 
+            pButton 
+            type="button" 
+            icon="pi pi-pencil" 
+            class="p-button-rounded p-button-sm p-button-warning mx-1" 
+            (click)="editSignataire(signataire.id)"
+          ></button>
+          <button 
+            pButton 
+            type="button" 
+            icon="pi pi-trash" 
+            class="p-button-rounded p-button-sm p-button-danger mx-1" 
+            (click)="deleteSignataire(signataire.id)"
+          ></button>
         </td>
       </tr>
     </ng-template>
-
+    
+    <div class="flex justify-center mt-4 space-x-2">
+      <button 
+        *ngFor="let page of [].constructor(totalPages); let i = index" 
+        (click)="onPageChange(i + 1)"
+        [ngClass]="{'bg-blue-500 text-white px-3 py-1 rounded': i + 1 === currentPage, 
+                    'bg-gray-200 px-3 py-1 rounded': i + 1 !== currentPage}">
+        {{ i + 1 }}
+      </button>
+    </div>
+    
     <ng-template pTemplate="emptymessage">
-      <tr><td colspan="7">Aucun signataire trouvé.</td></tr>
+      <tr><td colspan="7" class="text-center">Aucun signataire trouvé.</td></tr>
     </ng-template>
   </p-table>
-
-  <button pButton class="p-button-success" (click)="addSignataire()">Ajouter un Signataire</button>
 </div>

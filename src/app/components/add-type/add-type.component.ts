@@ -5,13 +5,11 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-add-type',
-  standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
-  templateUrl: './add-type.component.html',
-  styleUrl: './add-type.component.css'
-
-  })
+    selector: 'app-add-type',
+    imports: [ReactiveFormsModule, CommonModule],
+    templateUrl: './add-type.component.html',
+    styleUrl: './add-type.component.css'
+})
   export class AddTypeComponent implements OnInit {
     typeForm: FormGroup;
     errorMessage: string = '';

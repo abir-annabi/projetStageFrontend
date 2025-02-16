@@ -7,12 +7,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StorageService } from '../../service/storage-service.service';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css'],
-  imports:[ReactiveFormsModule,CommonModule,TranslateModule],
-  standalone: true,
-
+    selector: 'app-add-user',
+    templateUrl: './add-user.component.html',
+    styleUrls: ['./add-user.component.css'],
+    imports: [ReactiveFormsModule, CommonModule, TranslateModule]
 })
 export class AddUserComponent implements OnInit {
 

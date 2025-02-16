@@ -12,17 +12,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  standalone: true,
-  imports: [ReactiveFormsModule, NgxCaptchaModule, CommonModule,TranslateModule,ButtonModule,FloatLabel,InputTextModule,Toast,RouterModule],
-  providers:[MessageService]
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    imports: [ReactiveFormsModule, NgxCaptchaModule, CommonModule, TranslateModule, ButtonModule, FloatLabel, InputTextModule, Toast, RouterModule],
+    providers: [MessageService]
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
+  isSubmitting: boolean = false;
   loginForm!: FormGroup;
   siteKey: string = '6LfeP74qAAAAABpsd9_lTeV_xmy9GtNoWPbLovYZ';
-  isSubmitting: boolean = false;
+  
 
   constructor(
     private service: JwtService,

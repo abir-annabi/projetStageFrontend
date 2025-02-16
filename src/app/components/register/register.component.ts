@@ -11,12 +11,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
-  standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, CommonModule,TranslateModule,ButtonModule,FloatLabel,InputTextModule,Toast,RouterModule],
-  providers:[MessageService]
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css'],
+    imports: [ReactiveFormsModule, RouterModule, CommonModule, TranslateModule, ButtonModule, FloatLabel, InputTextModule, RouterModule],
+    providers: [MessageService]
 })
 export class RegisterComponent implements OnInit {
 
