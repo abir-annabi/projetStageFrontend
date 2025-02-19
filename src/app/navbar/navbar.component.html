@@ -12,7 +12,7 @@
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <img src="/assets/images/2-removebg-preview.png" width="100px">
         </div>
-        <span class="link-text">Home</span>
+        <span class="link-text">{{ 'Home' | translate }}</span>
       </a>
     </li>
     <li class="navbar-item flexbox-left" *ngIf="isAdmin">
@@ -20,15 +20,15 @@
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <img src="/assets/images/4-removebg-preview.png" width="100px" >
         </div>
-        <span class="link-text">Gestion des Utilisateurs</span>
+        <span class="link-text">{{ 'GestUsers' | translate }}</span>
       </a>
     </li>
-    <li class="navbar-item flexbox-left"  *ngIf="isAdmin">
+    <li class="navbar-item flexbox-left" *ngIf="isAdmin">
       <a class="navbar-item-inner flexbox-left" routerLink="/gestStruct">
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <img src="/assets/images/8-removebg-preview.png" width="100px" >
         </div>
-        <span class="link-text">Gestion des Structures</span>
+        <span class="link-text">{{ 'GestStructures' | translate }}</span>
       </a>
     </li>
     
@@ -37,7 +37,7 @@
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <img src="/assets/images/municipal-removebg-preview.png" width="100px" >
         </div>
-        <span class="link-text">Gest Type Structures</span>
+        <span class="link-text">{{ 'GestTypeStructures' | translate }}</span>
       </a>
     </li>
     <li class="navbar-item flexbox-left" *ngIf="isAdmin">
@@ -45,24 +45,24 @@
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <img src="/assets/images/6-removebg-preview.png" width="100px" >
         </div>
-        <span class="link-text">Gestion des Signataires</span>
+        <span class="link-text">{{ 'GestSignataires' | translate }}</span>
       </a>
     </li>
   
-  <li class="navbar-item flexbox-left" *ngIf="isAdmin">
-    <a class="navbar-item-inner flexbox-left" routerLink="/gestTypedemande">
-      <div class="navbar-item-inner-icon-wrapper flexbox">
-        <img src="/assets/images/1000_F_245242050_YeKpxzzutMROyfD1UD6BQLUULLEhQOXo-removebg-preview.png" width="100px" height="30px">
-      </div>
-      <span class="link-text">Gest. des Types Demande </span>
-    </a>
-  </li>
+    <li class="navbar-item flexbox-left" *ngIf="isAdmin">
+      <a class="navbar-item-inner flexbox-left" routerLink="/gestTypedemande">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <img src="/assets/images/1000_F_245242050_YeKpxzzutMROyfD1UD6BQLUULLEhQOXo-removebg-preview.png" width="100px" height="30px">
+        </div>
+        <span class="link-text">{{ 'GestTypeDemande' | translate }}</span>
+      </a>
+    </li>
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" (click)="logout()">
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <img src="/assets/images/3-removebg-preview.png" width="100px" >
         </div>
-        <span class="link-text">Déconnexion</span>
+        <span class="link-text">{{ 'Logout' | translate }}</span>
       </a>
     </li>
   </ul>

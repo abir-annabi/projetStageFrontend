@@ -12,21 +12,7 @@
     font-size: 12px;
     padding: 4px;
   }
-  /* Par défaut : orientation de gauche à droite */
-body.ltr {
-    direction: ltr;
-    text-align: left;
-  }
-  
-  /* Lorsque la langue arabe est sélectionnée : orientation de droite à gauche */
-  body.rtl {
-    direction: rtl;
-    text-align: right;
-  }
-  /* Exemple pour les icônes */
-body.rtl .icon {
-    transform: rotate(180deg); /* Inverser les icônes si nécessaire */
-  }
+
   
   body{
     background-color: transparent;

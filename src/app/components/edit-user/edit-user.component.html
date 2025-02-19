@@ -26,12 +26,7 @@
                 <label for="phoneNumber">{{ 'PhoneNumber' | translate }}</label>
                 <input type="text" id="phoneNumber" [(ngModel)]="user.phoneNumber" name="phoneNumber" required>
               </div>
-              <div class="field padding-bottom--24">
-                <label for="structure">{{ 'Structure' | translate }}</label>
-                <select id="structure" [(ngModel)]="user.structure.id" name="structure" required>
-                  <option *ngFor="let structure of structures" [value]="structure.id">{{ structure.libelleAr }}</option>
-                </select>
-              </div>
+
               <div class="field padding-bottom--24">
                 <label for="role">{{ 'Role' | translate }}</label>
                 <select id="role" [(ngModel)]="user.profile.role" name="role" required>
@@ -39,6 +34,16 @@
                   <option value="admin">{{ 'Admin' | translate }}</option>
                 </select>
               </div>
+
+              <div class="field padding-bottom--24">
+                <label for="structure">{{ 'Structure' | translate }}</label>
+                <select id="structure" [(ngModel)]="user.structure.id" name="structure" required>
+                  <option *ngFor="let structure of structures" [value]="structure.id">
+                    {{ structure.libelleFr }}
+                  </option>
+                </select>
+              </div>
+
               <div class="field padding-bottom--24">
                 <button type="submit" class="btn">{{ 'Save' | translate }}</button>
               </div>

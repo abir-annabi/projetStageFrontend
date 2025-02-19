@@ -51,8 +51,15 @@
   
   "PasswordUppercase": "Password must contain at least one uppercase letter.",
   "PasswordDigit": "Password must contain at least one digit.",
-  "PasswordSpecialChar": "Password must contain at least one special character."
-
-  
-  
+  "PasswordSpecialChar": "Password must contain at least one special character.",
+    "NoAccount": "Don't have an account?",
+    "CreateAccount": "Create an account",
+    "AlreadyHaveAccount": "Already have an account?",
+    "EmailPattern": "Invalid email format",
+    "GestUsers": "Manage Users",
+  "GestStructures": "Manage Structures",
+  "GestTypeStructures": "Manage Type Structures",
+  "GestSignataires": "Manage Signatories",
+  "GestTypeDemande": "Manage Request Types",
+  "Logout": "Logout"
 }

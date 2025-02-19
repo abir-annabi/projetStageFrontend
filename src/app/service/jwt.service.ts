@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap, throwError } from 'rxjs';
 import { StorageService } from './storage-service.service';
 
-  const BASE_URL = "http://localhost:8089/";
+  const BASE_URL = "http://localhost:8093/";
 
 @Injectable({
   providedIn: 'root'
@@ -143,7 +143,6 @@ export class JwtService {
     }
     return this.http.get(BASE_URL + `api/users/${userId}`, { headers });
   }
-
   updateUser(userId: number, userData: any): Observable<any> {
     const headers = this.createAuthorizationHeader();
     if (!headers) {
@@ -154,10 +153,12 @@ export class JwtService {
     const payload = {
       name: userData.name,
       email: userData.email,
-      password: userData.password, // Inclure le mot de passe (nécessaire pour le backend)
+   
       profile: {
         role: userData.profile.role, // Inclure le rôle
       },
+      structureId: userData.structure.id,
+        
     };
   
     console.log('Payload envoyé au backend:', payload);

@@ -15,7 +15,6 @@
     <h1>{{ 'Login' | translate }}</h1>
     
     <p-floatLabel variant="in">
-    <!-- Champ email -->
       <input
       pInputText id="email"
         type="email"
@@ -23,15 +22,12 @@
         autocomplete="off"
       />
       <label for="email" >{{ 'Email' | translate }}</label>
-
     </p-floatLabel>
 
     <span *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="block p-error">
-      <div *ngIf="loginForm.controls['email'].errors?.['required']">Email est requis *</div>
+      <div *ngIf="loginForm.controls['email'].errors?.['required']">{{ 'EmailRequired' | translate }}</div>
   </span>
     
-
-    <!-- Champ mot de passe -->
     <p-floatLabel variant="in">
       <input
       pInputText id="password"
@@ -39,14 +35,12 @@
         formControlName="password"
       />
       <label for="password" >{{ 'Password' | translate }}</label>
-
     </p-floatLabel>
     <span *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="block p-error">
-      <div *ngIf="loginForm.controls['password'].errors?.['required']">Mot de passe est requis *</div>
+      <div *ngIf="loginForm.controls['password'].errors?.['required']">{{ 'PasswordRequired' | translate }}</div>
   </span>
     
-      <p-floatLabel variant="in">
-    <!-- Champ Google reCAPTCHA -->
+    <p-floatLabel variant="in">
     <div class="form-group" *ngIf="showReCaptcha">
       <ngx-recaptcha2
         #captchaElem
@@ -59,7 +53,6 @@
     </div>
   </p-floatLabel>
 
-    <!-- Bouton Login -->
     <button
       type="submit"
       class="button-81"
@@ -74,21 +67,14 @@
 <div class="overlay-container">
     <div class="overlay">
         <div class="overlay-panel overlay-right">
-            <h1 class="h1">Bienvenue !</h1>
+            <h1 class="h1">{{ 'Welcome' | translate }}</h1>
             <img src="assets/images/stock-vector-group-of-happy-people-standing-together-waving-and-inviting-new-customer-colleague-concept-of-1833835885-removebg-preview.png" style="width: 300px;height: 200px;">
-            <p>Vous n'avez pas de compte ?</p>
-            <p-button label="Créer un compte" routerLink="/register" class="button-72" role="button"></p-button>
-
+            <p>{{ 'NoAccount' | translate }}</p>
+            <p-button label="{{ 'CreateAccount' | translate }}" routerLink="/register" class="button-72" role="button"></p-button>
         </div>
-        
     </div>
 </div>
 
 </div>
 </body>
 </html>
-
-
-
-
-

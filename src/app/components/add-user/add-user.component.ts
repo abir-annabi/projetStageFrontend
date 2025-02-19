@@ -13,7 +13,7 @@ import { StorageService } from '../../service/storage-service.service';
     imports: [ReactiveFormsModule, CommonModule, TranslateModule]
 })
 export class AddUserComponent implements OnInit {
-
+  structures: any[] = [];
   registerForm!: FormGroup;
 
   constructor(
@@ -30,8 +30,18 @@ export class AddUserComponent implements OnInit {
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$'), Validators.maxLength(8)]], 
       password: ['', [Validators.required, Validators.minLength(8), this.passwordComplexity]], 
       confirmPassword: ['', [Validators.required]], 
-      role: ['', Validators.required] // Ajout du champ rôle
+      role: ['', Validators.required], // Ajout du champ rôle,
+      structureId: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
+    this.service.getAllStructures().subscribe(
+      (data) => {
+        this.structures = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des structures', error);
+      }
+    );
+    
   }
   
 
@@ -74,7 +84,7 @@ export class AddUserComponent implements OnInit {
     };
 
     console.log(formData);
-    this.service.register(formData).subscribe(
+     this.service.register(formData).subscribe(
       (response) => {
         if (response.id != null) {
           alert("Ajout réussite!!");

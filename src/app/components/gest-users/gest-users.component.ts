@@ -21,24 +21,22 @@ import { DropdownModule } from 'primeng/dropdown';  // Pour p-dropdown
 
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectModule } from 'primeng/select';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-gest-users',
   templateUrl: './gest-users.component.html',
   styleUrls: ['./gest-users.component.css'],
-  imports: [CommonModule, TableModule, PaginatorModule, InputTextModule, ButtonModule, ConfirmDialogModule, TableModule, TagModule, IconFieldModule, InputIconModule, MultiSelectModule, SelectModule],
+  imports: [CommonModule, TableModule, PaginatorModule, InputTextModule, ButtonModule, ConfirmDialogModule, TableModule, TranslateModule,TagModule, IconFieldModule, InputIconModule, MultiSelectModule, SelectModule],
   providers: [ConfirmationService, MessageService]
 })
 export class GestUsersComponent implements OnInit {
 users: any[] = [];
- loading: boolean = true;
+loading: boolean = true;
 globalFilter: string = '';
-paginatedUsers: any[] = [];  // Utilisateurs affichés sur la page actuelle
-
-
-// Variables pour la pagination
+paginatedUsers: any[] = [];
 currentPage: number = 1;
-rowsPerPage: number = 10;  // Nombre d'utilisateurs par page
+rowsPerPage: number = 10;  
 totalRecords: number = 0;
 
 constructor(
@@ -61,7 +59,8 @@ fetchUsers(): void {
         phoneNumber: user.phoneNumber,
         structure: user.structure,
       }));
-      this.totalRecords = this.users.length; // ⚠️ Met à jour totalRecords
+      console.log(this.users); 
+      this.totalRecords = this.users.length;
       this.updatePaginatedUsers();
       this.loading = false;
     },

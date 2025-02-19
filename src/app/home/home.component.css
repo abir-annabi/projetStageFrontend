@@ -81,7 +81,7 @@ p{
   position: absolute;
 /* Décale vers la gauche */
 top: 26%; /* Ajuste selon la position exacte souhaitée */
-  left: 75%;
+  left: 70%;
   transform: translate(-50%, -50%);
   font-size: 30px;
   font-weight: bold;

@@ -36,6 +36,13 @@
                                     </div>
                                 </div>
                                 <div class="field padding-bottom--24">
+                                    <label for="structure">{{ 'Structure' | translate }}</label>
+                                    <select class="form-control" id="structure" formControlName="structureId">
+                                        <option *ngFor="let structure of structures" [value]="structure.id">{{ structure.name }}</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="field padding-bottom--24">
                                     <label for="phoneNumber">Phone Number</label>
                                     <input type="number" name="phoneNumber" formControlName="phoneNumber" required>
                                     <div *ngIf="registerForm.get('phoneNumber')?.hasError('required')">{{ 'PhoneNumberRequired' | translate }}</div>

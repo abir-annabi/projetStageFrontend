@@ -42,6 +42,12 @@
   "EmailValid": "L'email doit être valide.",
   "PasswordUppercase": "Le mot de passe doit contenir au moins une majuscule.",
   "PasswordDigit": "Le mot de passe doit contenir au moins un chiffre.",
-  "PasswordSpecialChar": "Le mot de passe doit contenir au moins un caractère spécial."
+  "PasswordSpecialChar": "Le mot de passe doit contenir au moins un caractère spécial.",
+  "NoAccount": "Vous n'avez pas de compte ?",
+  "CreateAccount": "Créer un compte",
 
+  "EmailPattern": "Format d'e-mail invalide",
+ 
+  "AlreadyHaveAccount": "Vous avez déjà un compte ?"
+  
 }
