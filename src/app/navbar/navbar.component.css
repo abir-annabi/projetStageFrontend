@@ -271,7 +271,7 @@ select {
   width: 5em;
   height: 100vh;
   position: fixed;
-  background-color: #DDDDDD;
+  background-color: #704d343a;
   transition: width 0.35s cubic-bezier(var(--transition-main), 1);
   overflow-y: auto;
   overflow-x: hidden;
@@ -330,7 +330,7 @@ select {
 }
 
 .navbar-item-inner:hover {
-  background-color: #625a5e84 ;
+  background-color: rgba(66, 69, 73, 0.411) ;
   color: hsl(var(--white));
 
   box-shadow: 0 17px 30px -10px hsla(var(--black), 0.25);

@@ -21,7 +21,9 @@ import { CommonModule } from '@angular/common';
       private router: Router
     ) {
       this.typeForm = this.fb.group({
-        libelle: ['', Validators.required],
+        libelleAr: ['', Validators.required],
+        libelleFr: ['', Validators.required]
+
       });
     }
   

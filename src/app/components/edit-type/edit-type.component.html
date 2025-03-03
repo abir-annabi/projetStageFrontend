@@ -7,18 +7,32 @@
   
     <form [formGroup]="typeForm" (ngSubmit)="updateType()">
       <div class="form-group padding-top--24">
-        <label for="libelle">Libellé</label>
+        <label for="libelleFr">libelle Fr</label>
         <input
           type="text"
           class="form-control"
-          id="libelle"
-          formControlName="libelle"
+          id="libelleFr"
+          formControlName="libelleFr"
           placeholder="Libellé du type"
         />
-        <div *ngIf="typeForm.get('libelle')?.invalid && typeForm.get('libelle')?.touched" class="text-danger">
+        <div *ngIf="typeForm.get('libelleFr')?.invalid && typeForm.get('libelleFr')?.touched" class="text-danger">
           Le libellé est requis.
         </div>
+        <div class="form-group padding-top--24">
+          <label for="libelleAr">libelle Ar</label>
+          <input
+            type="text"
+            class="form-control"
+            id="libelleAr"
+            formControlName="libelleAr"
+            placeholder="Libellé du type"
+          />
+          <div *ngIf="typeForm.get('libelleAr')?.invalid && typeForm.get('libelleAr')?.touched" class="text-danger">
+            Le libellé est requis.
+          </div>
       </div>
+    </div>
+
   
       <button type="submit" class="btn btn-primary padding-top--24" [disabled]="typeForm.invalid">Modifier</button>
     </form>

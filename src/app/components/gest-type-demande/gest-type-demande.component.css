@@ -11,7 +11,7 @@ body {
 .p-4 {
   max-width: 1000px;
   margin: auto;
-  background: rgb(245, 242, 242);
+  background: rgba(169, 152, 134, 0.648);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -19,7 +19,7 @@ body {
 
 /* 🌟 Titre */
 .text-xl {
-  color: #2c3e50;
+  color: #0d1216;
   text-align: center;
   font-size: 24px;
   font-weight: bold;
@@ -137,4 +137,7 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
+}
+.p-4{
+  margin-top: 10px;
 }

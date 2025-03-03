@@ -18,6 +18,7 @@
       class="p-button-success p-button-sm" 
       (click)="addStructure()"
     ></button>
+    
   </div>
   <p-table 
   #dt 
@@ -28,7 +29,6 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
       <th pSortableColumn="libelleFr">Libellé (Fr) <p-sortIcon field="libelleFr"></p-sortIcon></th>
       <th pSortableColumn="libelleAr">Libellé (Ar) <p-sortIcon field="libelleAr"></p-sortIcon></th>
       <th pSortableColumn="adresse">Adresse <p-sortIcon field="adresse"></p-sortIcon></th>
@@ -40,12 +40,11 @@
 
   <ng-template pTemplate="body" let-structure>
     <tr>
-      <td>{{ structure.code }}</td>
       <td>{{ structure.libelleFr }}</td>
       <td>{{ structure.libelleAr }}</td>
       <td>{{ structure.adresse }}</td>
-      <td>{{ structure.parentStructure?.libelleFr || 'Aucune structure parente' }}</td>
-      <td>{{ structure.type?.libelle || 'Aucun type' }}</td>      <td class="text-center">
+      <td>{{ structure.parentStructure?.libelleAr || 'Aucune structure parente' }}</td>
+      <td>{{ structure.type?.libelleFr || 'Aucun type' }}</td>      <td class="text-center">
         <button 
           pButton 
           type="button" 

@@ -5,6 +5,7 @@
 </head>
 <body>
     <div class="login-root">
+        <h3>Add User</h3>
         <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh; flex-grow: 1;">
             <div class="loginbackground box-background--white padding-top--64">
                 <div class="loginbackground-gridContainer">
@@ -17,10 +18,9 @@
                 <div class="formbg-outer">
                     <div class="formbg">
                         <div class="formbg-inner padding-horizontal--48">
-                            <span class="padding-bottom--15">Remplir les données</span>
                             <form id="stripe-login" [formGroup]="registerForm" (ngSubmit)="submitForm()">
                                 <div class="field padding-bottom--24">
-                                    <label for="name">Nom</label>
+                                    <label for="name">{{ 'Nom' |translate}}</label>
                                     <input type="text" name="name" formControlName="name" required>
                                     <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="text-danger">
                                         <div *ngIf="registerForm.get('name')?.hasError('required')">{{ 'NameRequired' | translate }}</div>
@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <div class="field padding-bottom--24">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ 'Email' |translate}}</label>
                                     <input type="email" name="email" formControlName="email" required>
                                     <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
                                         <div *ngIf="registerForm.get('email')?.hasError('required')">{{ 'EmailRequired' | translate }}</div>
@@ -38,14 +38,16 @@
                                 <div class="field padding-bottom--24">
                                     <label for="structure">{{ 'Structure' | translate }}</label>
                                     <select class="form-control" id="structure" formControlName="structureId">
-                                        <option *ngFor="let structure of structures" [value]="structure.id">{{ structure.name }}</option>
+                                        <option *ngFor="let structure of structures" [value]="structure.id">{{ structure.libelleAr }}</option>
                                     </select>
                                 </div>
                                 
                                 <div class="field padding-bottom--24">
-                                    <label for="phoneNumber">Phone Number</label>
+                                    <label for="phoneNumber">{{ 'PHONE' |translate}}</label>
                                     <input type="number" name="phoneNumber" formControlName="phoneNumber" required>
+                                    <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched" class="text-danger">
                                     <div *ngIf="registerForm.get('phoneNumber')?.hasError('required')">{{ 'PhoneNumberRequired' | translate }}</div>
+                                    </div>
                                 </div>
                                 <div class="field padding-bottom--24">
                                     <label for="password">{{ 'Password' | translate }}</label>

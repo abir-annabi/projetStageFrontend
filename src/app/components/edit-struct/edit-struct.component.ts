@@ -3,18 +3,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JwtService } from '../../service/jwt.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-edit-struct',
     templateUrl: './edit-struct.component.html',
     styleUrls: ['./edit-struct.component.css'],
-    imports: [ReactiveFormsModule, CommonModule]
+    imports: [ReactiveFormsModule, CommonModule,TranslateModule]
 })
 export class EditStructComponent implements OnInit {
   structForm!: FormGroup;  // Déclaration du formulaire
   structureId!: number;  // Identifiant de la structure
   errorMessage: string = '';
   successMessage: string = '';
+  types: any[] = []; // Liste des types disponibles
 
   constructor(
     private jwtService: JwtService,
@@ -30,6 +32,10 @@ export class EditStructComponent implements OnInit {
       next: (data) => { this.structures = data; },
       error: (err) => { console.error("❌ Erreur structures :", err); }
     });
+    this.jwtService.getTypes().subscribe({
+      next: (data) => { this.types = data; },
+      error: (err) => { console.error("❌ Erreur types :", err); }
+    });
     this.structureId = +this.route.snapshot.paramMap.get('id')!;  // Récupérer l'ID de la structure depuis l'URL
     this.initializeForm();
     this.loadStructure();
@@ -42,7 +48,8 @@ export class EditStructComponent implements OnInit {
       libelleAr: ['', Validators.required],
       libelleFr: ['', Validators.required],
       adresse: ['', Validators.required],
-      parentStructureId: [null]
+      parentStructure: [null],
+      type: [null, Validators.required] 
     });
   }
 
@@ -68,7 +75,12 @@ export class EditStructComponent implements OnInit {
     }
 
     const structureData = this.structForm.value;
-    this.updateStructure(structureData);
+    if (structureData.parentStructure && typeof structureData.parentStructure === 'object') {
+      console.log("📤 Envoi des données structure :", structureData);
+      this.updateStructure(structureData)
+    } else {
+      this.errorMessage = 'La structure parente est invalide.';
+    }
   }
 
   // Mettre à jour la structure via le service

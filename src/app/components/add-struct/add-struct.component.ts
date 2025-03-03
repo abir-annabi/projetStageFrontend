@@ -14,9 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     imports: [ReactiveFormsModule, CommonModule]
 })
 export class AddStructComponent implements OnInit {
-  structForm!: FormGroup;  // Déclarer sans initialisation dans la déclaration
+  structForm!: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
+  structures: any[] = [];
+  types: any[] = []; // Liste des types disponibles
 
   constructor(
     private jwtService: JwtService,
@@ -24,47 +26,53 @@ export class AddStructComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
-
-  structures: any[] = []; // Liste des structures disponibles
-
   ngOnInit(): void {
     this.jwtService.getAllStructures().subscribe({
       next: (data) => { this.structures = data; },
       error: (err) => { console.error("❌ Erreur structures :", err); }
     });
-    this.initializeForm();    
-  }
-  
- 
-  
 
-  // Initialiser le formulaire pour l'ajout d'une structure
+    this.jwtService.getTypes().subscribe({
+      next: (data) => { this.types = data; },
+      error: (err) => { console.error("❌ Erreur types :", err); }
+    });
+
+    this.initializeForm();
+  }
+
   initializeForm(): void {
     this.structForm = this.fb.group({
       libelleAr: ['', Validators.required],
       libelleFr: ['', Validators.required],
       adresse: ['', Validators.required],
-      parentStructureId: [null]
+      parentStructure: [null],
+      type: [null, Validators.required] // type est maintenant un objet Type
     });
   }
+  
 
-  // Soumettre le formulaire pour ajouter la structure
   onSubmit(): void {
     if (this.structForm.invalid) {
       this.errorMessage = 'Veuillez remplir tous les champs.';
       return;
     }
-
+  
     const structureData = this.structForm.value;
-    this.addStructure(structureData);
+  
+    // Vérifiez que parentStructure est un objet valide
+    if (structureData.parentStructure && typeof structureData.parentStructure === 'object') {
+      console.log("📤 Envoi des données structure :", structureData);
+      this.addStructure(structureData);
+    } else {
+      this.errorMessage = 'La structure parente est invalide.';
+    }
   }
-
-  // Ajouter la structure via le service
+  
   addStructure(structureData: any): void {
     this.jwtService.addStructure(structureData).subscribe(
       () => {
         this.successMessage = 'Structure ajoutée avec succès !';
-        this.router.navigate(['/gestStruct']); // Redirige vers la page de gestion des structures
+        this.router.navigate(['/gestStruct']);
       },
       (error) => {
         this.errorMessage = 'Erreur lors de l\'ajout de la structure';
@@ -73,7 +81,6 @@ export class AddStructComponent implements OnInit {
     );
   }
 
-  // Annuler et revenir à la page de gestion des structures
   cancel(): void {
     this.router.navigate(['/gestStruct']);
   }

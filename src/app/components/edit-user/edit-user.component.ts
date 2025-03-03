@@ -61,7 +61,6 @@ export class EditUserComponent implements OnInit {
   }
 
   saveUser(): void {
-   
 
     this.jwtService.updateUser(this.userId, this.user).subscribe(
       () => {

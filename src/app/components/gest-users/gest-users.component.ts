@@ -108,6 +108,8 @@ confirmDelete(userId: number): void {
 deleteUser(userId: number): void {
   this.jwtService.deleteUser(userId).subscribe(
     () => {
+      this.fetchUsers();
+
       this.users = this.users.filter((user) => user.id !== userId);
       this.messageService.add({ severity: 'success', summary: 'Succès', detail: 'Utilisateur supprimé' });
     },

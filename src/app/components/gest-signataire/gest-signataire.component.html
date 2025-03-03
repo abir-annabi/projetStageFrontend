@@ -26,7 +26,6 @@
   <p-table #dt [value]="paginatedSignataires" dataKey="id" editMode="row" [paginator]="true" [rows]="10" [globalFilterFields]="['cmpps', 'nomFr', 'prenomFr', 'email']" responsiveLayout="scroll">
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="cmpps">CMNPS <p-sortIcon field="cmpps"></p-sortIcon></th>
         <th pSortableColumn="nomFr">Nom <p-sortIcon field="nomFr"></p-sortIcon></th>
         <th pSortableColumn="prenomFr">Prénom <p-sortIcon field="prenomFr"></p-sortIcon></th>
         <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
@@ -38,12 +37,11 @@
 
     <ng-template pTemplate="body" let-signataire>
       <tr>
-        <td>{{ signataire.cmpps }}</td>
         <td>{{ signataire.nomFr }}</td>
         <td>{{ signataire.prenomFr }}</td>
         <td>{{ signataire.email }}</td>
         <td>{{ signataire.telephone }}</td>
-        <td>{{ signataire.structure ? signataire.structure.libelleFr : 'Structure inconnue' }}</td>
+        <td>{{signataire.structure.libelleFr}} - {{signataire.structure.libelleFr}}</td>
         <td class="text-center">
           <button 
             pButton 

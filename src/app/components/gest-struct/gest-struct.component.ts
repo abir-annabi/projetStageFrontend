@@ -52,7 +52,7 @@ export class GestStructComponent implements OnInit {
         this.totalRecords = this.structures.length;
         this.updatePaginatedStructures();
         this.loading = false;
-        console.log(this.structures)
+        console.log("Structure : ",this.structures)
       },
       (error) => {
         this.errorMessage = 'Erreur lors du chargement des structures';

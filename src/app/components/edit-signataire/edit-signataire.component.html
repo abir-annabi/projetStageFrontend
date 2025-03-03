@@ -36,7 +36,6 @@
         <label>Structure</label>
         <select formControlName="structureId" class="form-control">
           <option value="">Sélectionner une structure</option>
-          <!-- Ajoute ici une boucle pour afficher les structures -->
           <option *ngFor="let structure of structures" [value]="structure.id">
             {{ structure.libelleFr }} - {{ structure.libelleAr }}
           </option>

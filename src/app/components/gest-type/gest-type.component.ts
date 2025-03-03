@@ -82,9 +82,8 @@ totalRecords: number = 0;
     }
   }
 
-  // Initialisation de l'édition
-  onRowEditInit(type: any) {
-    this.clonedTypes[type.id] = { ...type };
+  onRowEditInit(id: any) {
+    this.router.navigate(['/editType', id]); // Redirige vers la route d'édition avec l'ID
   }
 
  // Sauvegarde de la modification

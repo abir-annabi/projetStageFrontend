@@ -1,7 +1,7 @@
 /* Welcome Section */
 .welcome-section {
   height: 100vh;
-  background: url('/assets/images/19.png') no-repeat center center/cover;
+  background: url('/assets/images/fond1.png') no-repeat center center/cover;
   display: flex;
   justify-content: flex-start; /* Align horizontally to the left */
   align-items: flex-start; /* Align vertically to the top */
@@ -67,12 +67,12 @@ p{
 }
 .welcome-text {
   position: absolute;
-  top: 20%; /* Ajuste selon la position exacte souhaitée */
-  left: 77%; /* Décale vers la gauche */
+  top: 35%; /* Ajuste selon la position exacte souhaitée */
+  left: 37%; /* Décale vers la gauche */
   transform: translate(-50%, -50%);
-  font-size: 30px;
+  font-size:28px;
   font-weight: bold;
-  color: rgb(100, 43, 100); /* Jaune pour s'harmoniser avec la zone */ /* Légère transparence pour la lisibilité */
+  color: rgb(10, 10, 12); /* Jaune pour s'harmoniser avec la zone */ /* Légère transparence pour la lisibilité */
   padding: 10px 20px;
   border-radius: 10px;
   text-align: center;
@@ -80,12 +80,12 @@ p{
 .welcome-text2 {
   position: absolute;
 /* Décale vers la gauche */
-top: 26%; /* Ajuste selon la position exacte souhaitée */
-  left: 70%;
+top: 51%; /* Ajuste selon la position exacte souhaitée */
+  left: 37%;
   transform: translate(-50%, -50%);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
-  color: rgb(100, 43, 100); /* Jaune pour s'harmoniser avec la zone */ /* Légère transparence pour la lisibilité */
+  color: rgb(20, 21, 23); /* Jaune pour s'harmoniser avec la zone */ /* Légère transparence pour la lisibilité */
   padding: 10px 20px;
   border-radius: 10px;
   text-align: center;

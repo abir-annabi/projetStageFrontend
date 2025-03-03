@@ -25,7 +25,9 @@ export class EditTypeComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.typeForm = this.fb.group({
-      libelle: ['', Validators.required]
+      libelleFr: ['', Validators.required],
+      libelleAr: ['', Validators.required]
+
     });
   }
 
@@ -42,8 +44,8 @@ export class EditTypeComponent implements OnInit {
     this.jwtService.getTypeById(id).subscribe(
       (data) => {
         this.typeForm.patchValue({
-          code: data.code,
-          libelle: data.libelle
+          libelleFr: data.libelleFr,
+          libelleAr: data.libelleAr
         });
       },
       (error) => {

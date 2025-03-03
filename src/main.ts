@@ -7,6 +7,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'; // Importer TranslateHttpLoader
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 // Fonction pour créer le loader de traduction
 export function HttpLoaderFactory(http: HttpClient) {
@@ -15,6 +16,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideAnimations(),
     provideHttpClient(),
     provideRouter(routes),
     importProvidersFrom(

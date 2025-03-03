@@ -46,6 +46,7 @@ ngOnInit(): void {
     this.signataireId = Number(this.route.snapshot.paramMap.get('id'));
     console.log("🔹 ID du signataire récupéré :", this.signataireId);
 
+    
     if (this.signataireId) {
       this.jwtService.getSignataireById(this.signataireId).subscribe({
         next: (data) => {
